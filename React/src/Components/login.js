@@ -12,7 +12,7 @@ class Login extends Component {
   // }
 
   state = {
-    email: 'email@122',
+    email: 'email@12222',
     password: '123'
   }
 
