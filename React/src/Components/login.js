@@ -12,7 +12,7 @@ class Login extends Component {
   // }
 
   state = {
-    email: 'email@12',
+    email: 'email@122',
     password: '123'
   }
 
@@ -34,10 +34,8 @@ class Login extends Component {
     .catch(function (error) {
       console.log(error);
     });
-
+    
   }
-
-
 
   render() {
     return (
