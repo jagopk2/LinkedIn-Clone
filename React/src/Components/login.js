@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Axios from 'axios';
 
 // const $ = window.$;
 class Login extends Component {
+
   // componentDidMount() {
   //   var element = ReactDOM.findDOMNode(this.refs.dropdown)
   
@@ -10,11 +12,6 @@ class Login extends Component {
   //     $('select').formSelect();
   //   });
   // }
-
-  state = {
-    email: 'email@12222',
-    password: '123'
-  }
 
 
   handleSubmit = (e) => {
@@ -30,6 +27,8 @@ class Login extends Component {
     })
     .then(function (response) {
       console.log(response.data);
+      localStorage.setItem('user_id',response.data.user_id);
+      localStorage.setItem('sessionID',response.data.sessionID);
     })
     .catch(function (error) {
       console.log(error);

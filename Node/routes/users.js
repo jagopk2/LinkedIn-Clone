@@ -22,7 +22,7 @@ router.post('/login', function (req, res, next) {
     if (!user) { return res.send({ loginState: 'unsucessful', message: req.flash('loginMessage') }); }
     req.logIn(user, function (err) {
       if (err) { console.log('dsafds2'); return next(err); }
-      return res.send({ loginState: 'successfull' });
+      return res.send({ loginState: 'successfull', sessionID: req.sessionID, user_id: req.user.id });
     });
   })(req, res, next);
 });
@@ -51,12 +51,33 @@ router.post('/signup', (req, res, next) => {
   });
 });
 
-router.get('/logout',(req,res,next)=>{
+router.get('/logout', (req, res, next) => {
   req.logout();
   req.session.destroy();
   res.redirect('/')
 })
+router.post('/isauthenticated', (req, res, next) => {
+  console.log(req.body.sessionID);
+  if (typeof req.body.sessionID !== undefined) {
+    connection.query(`select * from sessions where session_id =  '${req.body.sessionID}'`, (error, results) => {
+      if (error) {
+        console.log(error);
+      } else {
+        if (results.length > 0) {
+          res.json({
+            status: true
+          })
+        } else {
+          res.json({
+            status: false
+          })
+        }
+      }
+    })
+  }
+  // console.log(req.isAuthenticated());
 
+});
 router.post('/timeline', (req, res, next) => {
 
   connection.query(`select j.id as job_id,j.company_id ,j.name as job_name,j.field,j.status,c.name as company_name ,c.website,j.description from jobposting j,company c where c.id = j.company_id and j.status = 'pending' and j.id not in (select job_id from jobapplication where user_id=${user_id});`, function (error, results, fields) {
@@ -113,10 +134,10 @@ router.post('/apply', (req, res, next) => {
   connection.query(`insert into jobapplication (user_id,job_id) Values (${user_id},${job_id});`, function (error, results, fields) {
     if (error) {
       console.log('Error Inserting job application \n' + error);
-      res.json({ status: 'UnSuccesful' ,error:error});
+      res.json({ status: 'UnSuccesful', error: error });
 
     } else
-        res.json({ status: 'Succesful' });
+      res.json({ status: 'Succesful' });
 
   });
 });
@@ -131,10 +152,26 @@ router.post('/followcompany', (req, res, next) => {
   connection.query(`insert into following (user_id,company_id) Values (${user_id},${company_id});`, function (error, results, fields) {
     if (error) {
       console.log('Error Inserting Following Table\n' + error);
-      res.json({ status: 'UnSuccesful' ,error:error});
+      res.json({ status: 'UnSuccesful', error: error });
 
     } else
-        res.json({ status: 'Succesful' });
+      res.json({ status: 'Succesful' });
+  });
+});
+
+router.post('/uprofile', (req, res, next) => {
+
+  var user_id = req.body.user_id;
+  console.log(user_id);
+  connection.query(`select * from user where id = ${user_id};`, function (error, results, fields) {
+    if (error) {
+      console.log('Error Getting user Profile Data\n' + error);
+
+    } else
+      if (results.length >= 0) {
+        // console.log(results);
+        res.json(results[0]);
+      }
   });
 });
 

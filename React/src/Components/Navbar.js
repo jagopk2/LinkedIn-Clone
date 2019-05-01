@@ -11,6 +11,7 @@ const NavBar = () =>{
                 <li><NavLink to="/timeline">Timeline</NavLink></li>
                 <li><NavLink to="/ctimeline">Company Timeline</NavLink></li>
                 <li><NavLink to="/companies">Discover Companies</NavLink></li>
+                <li><NavLink to="/uprofile">User Profile</NavLink></li>
                 
             </ul>
             <nav>
