@@ -51,6 +51,12 @@ router.post('/signup', (req, res, next) => {
   });
 });
 
+router.get('/logout',(req,res,next)=>{
+  req.logout();
+  req.session.destroy();
+  res.redirect('/')
+})
+
 router.post('/timeline', (req, res, next) => {
 
   connection.query(`select j.id as job_id,j.company_id ,j.name as job_name,j.field,j.status,c.name as company_name ,c.website,j.description from jobposting j,company c where c.id = j.company_id and j.status = 'pending' and j.id not in (select job_id from jobapplication where user_id=${user_id});`, function (error, results, fields) {

@@ -28,11 +28,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: 'mysecret',
   store:  new MySQLStore({
-    expiration:10*1000
+    expiration:1000*10*10
   },connection),
   resave: false,
   saveUninitialized: false,
-  cookie:{maxAge:10*1000}
+  cookie:{maxAge:1000*10*10}
 })); 
 app.use(cors());
 app.use(flash());
