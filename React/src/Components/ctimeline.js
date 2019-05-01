@@ -4,7 +4,7 @@ import axios from 'axios';
 const $ = window.$;
 // const $ = window.$;
 var user_id = 3;
-class Timeline extends Component {
+class Ctimeline extends Component {
     componentDidMount() {
         var element = ReactDOM.findDOMNode(this.refs.collapsible)
 
@@ -18,6 +18,7 @@ class Timeline extends Component {
     state = {
         timeline_data: []
     }
+
     applicationHandler = (job_id) => {
         let url = 'http://localhost:3002/users/apply'
         axios.post(url, {
@@ -32,7 +33,7 @@ class Timeline extends Component {
                             return job.job_id != job_id;
                         })
                     });
-                }else{
+                } else {
                     console.log('cannot proccess apply on backend');
                 }
 
@@ -42,22 +43,21 @@ class Timeline extends Component {
                 console.log(error);
             });
     }
+
     jobTemplate = () => {
         var final_template = [];
         this.state.timeline_data.forEach((job) => {
-            // console.log(job);
+            console.log(job);
             final_template.push(
                 <li>
                     <div className="collapsible-header">
                         <i className="material-icons">filter_drama</i>
                         {job.job_name}
-                        <span class="new badge" data-badge-caption={job.field}></span>
-                    </div>
+                        <span className="new badge">1</span></div>
                     <div className="collapsible-body">
                         <p>{job.description}</p>
-                        {/* <a href={job.website}>Visit Us</a><br /> */}
                         <button className="btn " onClick={() => this.applicationHandler(job.job_id)}>Apply</button>
-
+                        {/* <a href={job.website}>{job.company_name}</a> */}
                     </div>
                 </li>
 
@@ -68,7 +68,7 @@ class Timeline extends Component {
     }
 
     componentWillMount() {
-        let url = 'http://localhost:3002/users/timeline'
+        let url = 'http://localhost:3002/users/ctimeline'
         axios.post(url)
             .then((response) => {
                 // console.log(response.data);
@@ -93,4 +93,4 @@ class Timeline extends Component {
         );
     }
 }
-export default Timeline;
+export default Ctimeline;
