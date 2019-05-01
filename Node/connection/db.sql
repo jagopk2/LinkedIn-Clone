@@ -67,7 +67,7 @@ CREATE
   (
     user_id      INTEGER ,
     job_id       INTEGER ,
-    status       VARCHAR (250),
+    status       VARCHAR (250) DEFAULT 'pending',
     Foreign key (user_id) references user(id),
     Foreign key (job_id) references jobposting(id)
   ) ;
@@ -121,14 +121,14 @@ INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumbe
 INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`) VALUES (9, 'autem', 'xhoppe@example.com', 'non', '7587 Keaton Mall Suite 341\nBogisichton, NM 28876-3716', 0, 'http://muller.com/');
 INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`) VALUES (10, 'quaerat', 'eloisa.balistreri@example.com', 'ratione', '8850 Ebert Prairie\nReingerborough, WI 51412', 0, 'http://will.com/');
 
-INSERT INTO `jobposting` (`id`, `company_id`, `name`, `description`, `field`, `status`) VALUES (1, 1, 'ea', 'Laudantium quia nihil qui eligendi ut nobis. Ea ex veritatis voluptatum fugiat. In odio inventore tempora ipsam qui sint incidunt.', 'harum', 'et');
-INSERT INTO `jobposting` (`id`, `company_id`, `name`, `description`, `field`, `status`) VALUES (2, 2, 'deserunt', 'Repellendus molestias quam doloribus illum incidunt nam. Delectus ad omnis et voluptatem velit nostrum ut. Vel fuga dicta dolorem. Numquam odio vero sapiente nihil eum tempora reprehenderit.', 'saepe', 'qui');
-INSERT INTO `jobposting` (`id`, `company_id`, `name`, `description`, `field`, `status`) VALUES (3, 3, 'quis', 'Praesentium velit sapiente eum id non quasi magni. Inventore officia aliquam alias quaerat quis magnam ut. Molestias hic excepturi voluptatem voluptatem dolor. Quae esse necessitatibus nihil occaecati.', 'voluptatem', 'impedit');
-INSERT INTO `jobposting` (`id`, `company_id`, `name`, `description`, `field`, `status`) VALUES (4, 4, 'minima', 'Magni cupiditate id quia fugit aut alias dolorem. Inventore repudiandae molestiae eligendi omnis nesciunt facilis repellendus. Laboriosam sed voluptatem amet est provident explicabo. Doloremque natus aut aliquid in ipsam.', 'molestiae', 'est');
-INSERT INTO `jobposting` (`id`, `company_id`, `name`, `description`, `field`, `status`) VALUES (5, 5, 'quis', 'Ipsam quaerat nostrum voluptatem dolorem possimus facilis et. Doloremque harum deleniti accusantium ullam. Molestias dolorem adipisci et fuga expedita cumque in. Odio perferendis tempora consequatur voluptatem laboriosam perferendis sint non. Volupta', 'adipisci', 'natus');
-INSERT INTO `jobposting` (`id`, `company_id`, `name`, `description`, `field`, `status`) VALUES (6, 6, 'vero', 'Exercitationem dolorem ea voluptas id molestiae in ipsam consequatur. Aliquam et sapiente esse consequatur et hic autem deserunt. Eius aut consequuntur velit adipisci itaque.', 'temporibus', 'autem');
-INSERT INTO `jobposting` (`id`, `company_id`, `name`, `description`, `field`, `status`) VALUES (7, 7, 'officia', 'Error voluptatem magnam deserunt aut nisi sint vero voluptatibus. Provident consequatur eius a porro. Eum in et eveniet velit dolor fuga iure. Asperiores iusto nostrum labore sed doloribus ducimus quia. Perferendis sit dolore consectetur provident te', 'repellat', 'expedita');
-INSERT INTO `jobposting` (`id`, `company_id`, `name`, `description`, `field`, `status`) VALUES (8, 8, 'reiciendis', 'Nostrum tenetur temporibus quae dicta. Quidem itaque animi in officia veritatis sint. Rerum quia asperiores rerum qui ducimus laudantium id. Debitis qui officia quibusdam non optio laborum.', 'et', 'nostrum');
+INSERT INTO `jobposting` (`id`, `company_id`, `name`, `description`, `field`, `status`) VALUES (1, 1, 'ea', 'Laudantium quia nihil qui eligendi ut nobis. Ea ex veritatis voluptatum fugiat. In odio inventore tempora ipsam qui sint incidunt.', 'harum', 'pending');
+INSERT INTO `jobposting` (`id`, `company_id`, `name`, `description`, `field`, `status`) VALUES (2, 2, 'deserunt', 'Repellendus molestias quam doloribus illum incidunt nam. Delectus ad omnis et voluptatem velit nostrum ut. Vel fuga dicta dolorem. Numquam odio vero sapiente nihil eum tempora reprehenderit.', 'saepe', 'pending');
+INSERT INTO `jobposting` (`id`, `company_id`, `name`, `description`, `field`, `status`) VALUES (3, 3, 'quis', 'Praesentium velit sapiente eum id non quasi magni. Inventore officia aliquam alias quaerat quis magnam ut. Molestias hic excepturi voluptatem voluptatem dolor. Quae esse necessitatibus nihil occaecati.', 'voluptatem', 'pending');
+INSERT INTO `jobposting` (`id`, `company_id`, `name`, `description`, `field`, `status`) VALUES (4, 4, 'minima', 'Magni cupiditate id quia fugit aut alias dolorem. Inventore repudiandae molestiae eligendi omnis nesciunt facilis repellendus. Laboriosam sed voluptatem amet est provident explicabo. Doloremque natus aut aliquid in ipsam.', 'molestiae', 'approved');
+INSERT INTO `jobposting` (`id`, `company_id`, `name`, `description`, `field`, `status`) VALUES (5, 5, 'quis', 'Ipsam quaerat nostrum voluptatem dolorem possimus facilis et. Doloremque harum deleniti accusantium ullam. Molestias dolorem adipisci et fuga expedita cumque in. Odio perferendis tempora consequatur voluptatem laboriosam perferendis sint non. Volupta', 'adipisci',  'pending');
+INSERT INTO `jobposting` (`id`, `company_id`, `name`, `description`, `field`, `status`) VALUES (6, 6, 'vero', 'Exercitationem dolorem ea voluptas id molestiae in ipsam consequatur. Aliquam et sapiente esse consequatur et hic autem deserunt. Eius aut consequuntur velit adipisci itaque.', 'temporibus',  'pending');
+INSERT INTO `jobposting` (`id`, `company_id`, `name`, `description`, `field`, `status`) VALUES (7, 7, 'officia', 'Error voluptatem magnam deserunt aut nisi sint vero voluptatibus. Provident consequatur eius a porro. Eum in et eveniet velit dolor fuga iure. Asperiores iusto nostrum labore sed doloribus ducimus quia. Perferendis sit dolore consectetur provident te', 'repellat',  'pending');
+INSERT INTO `jobposting` (`id`, `company_id`, `name`, `description`, `field`, `status`) VALUES (8, 8, 'reiciendis', 'Nostrum tenetur temporibus quae dicta. Quidem itaque animi in officia veritatis sint. Rerum quia asperiores rerum qui ducimus laudantium id. Debitis qui officia quibusdam non optio laborum.', 'et', 'pending');
 INSERT INTO `jobposting` (`id`, `company_id`, `name`, `description`, `field`, `status`) VALUES (9, 9, 'odio', 'Tenetur fugit eius molestiae odit doloribus. Eos vel blanditiis nostrum praesentium esse in soluta. Voluptatem commodi illum atque et eum.', 'libero', 'quis');
 INSERT INTO `jobposting` (`id`, `company_id`, `name`, `description`, `field`, `status`) VALUES (10, 10, 'alias', 'Dicta aperiam quis eum. Quo maiores praesentium nemo modi corrupti vitae nulla. Ab aspernatur et sequi eos fugit.', 'exercitationem', 'dolores');
 
@@ -154,47 +154,28 @@ INSERT INTO `education` (`user_id`, `education`) VALUES (8, 'eos');
 INSERT INTO `education` (`user_id`, `education`) VALUES (9, 'quia');
 INSERT INTO `education` (`user_id`, `education`) VALUES (10, 'repudiandae');
 
-INSERT INTO `following` (`user_id`, `company_id`, `status`) VALUES (1, 1, 'quisquam');
-INSERT INTO `following` (`user_id`, `company_id`, `status`) VALUES (2, 2, 'accusamus');
-INSERT INTO `following` (`user_id`, `company_id`, `status`) VALUES (3, 3, 'dolorum');
-INSERT INTO `following` (`user_id`, `company_id`, `status`) VALUES (4, 4, 'officia');
-INSERT INTO `following` (`user_id`, `company_id`, `status`) VALUES (5, 5, 'corrupti');
-INSERT INTO `following` (`user_id`, `company_id`, `status`) VALUES (6, 6, 'qui');
-INSERT INTO `following` (`user_id`, `company_id`, `status`) VALUES (7, 7, 'dolor');
-INSERT INTO `following` (`user_id`, `company_id`, `status`) VALUES (8, 8, 'labore');
-INSERT INTO `following` (`user_id`, `company_id`, `status`) VALUES (9, 9, 'et');
-INSERT INTO `following` (`user_id`, `company_id`, `status`) VALUES (10, 10, 'quo');
-INSERT INTO `following` (`user_id`, `company_id`, `status`) VALUES (1, 1, 'debitis');
-INSERT INTO `following` (`user_id`, `company_id`, `status`) VALUES (2, 2, 'enim');
-INSERT INTO `following` (`user_id`, `company_id`, `status`) VALUES (3, 3, 'illo');
-INSERT INTO `following` (`user_id`, `company_id`, `status`) VALUES (4, 4, 'earum');
-INSERT INTO `following` (`user_id`, `company_id`, `status`) VALUES (5, 5, 'ut');
-INSERT INTO `following` (`user_id`, `company_id`, `status`) VALUES (6, 6, 'exercitationem');
-INSERT INTO `following` (`user_id`, `company_id`, `status`) VALUES (7, 7, 'totam');
-INSERT INTO `following` (`user_id`, `company_id`, `status`) VALUES (8, 8, 'pariatur');
-INSERT INTO `following` (`user_id`, `company_id`, `status`) VALUES (9, 9, 'enim');
-INSERT INTO `following` (`user_id`, `company_id`, `status`) VALUES (10, 10, 'consectetur');
+INSERT INTO `following` (`user_id`, `company_id`, `status`) VALUES (1, 1, 'approved');
+INSERT INTO `following` (`user_id`, `company_id`, `status`) VALUES (2, 2, 'approved');
+INSERT INTO `following` (`user_id`, `company_id`, `status`) VALUES (3, 3, 'approved');
+INSERT INTO `following` (`user_id`, `company_id`, `status`) VALUES (4, 4, 'approved');
+INSERT INTO `following` (`user_id`, `company_id`, `status`) VALUES (5, 5, 'approved');
+INSERT INTO `following` (`user_id`, `company_id`, `status`) VALUES (6, 6, 'approved');
+INSERT INTO `following` (`user_id`, `company_id`, `status`) VALUES (7, 7, 'approved');
+INSERT INTO `following` (`user_id`, `company_id`, `status`) VALUES (8, 8, 'blocked');
+INSERT INTO `following` (`user_id`, `company_id`, `status`) VALUES (9, 9, 'approved');
+INSERT INTO `following` (`user_id`, `company_id`, `status`) VALUES (10, 10, 'approved');
 
-INSERT INTO `jobApplication` (`user_id`, `job_id`, `status`) VALUES (1, 1, 'pariatur');
-INSERT INTO `jobApplication` (`user_id`, `job_id`, `status`) VALUES (2, 2, 'est');
-INSERT INTO `jobApplication` (`user_id`, `job_id`, `status`) VALUES (3, 3, 'et');
-INSERT INTO `jobApplication` (`user_id`, `job_id`, `status`) VALUES (4, 4, 'rem');
-INSERT INTO `jobApplication` (`user_id`, `job_id`, `status`) VALUES (5, 5, 'voluptatem');
-INSERT INTO `jobApplication` (`user_id`, `job_id`, `status`) VALUES (6, 6, 'commodi');
-INSERT INTO `jobApplication` (`user_id`, `job_id`, `status`) VALUES (7, 7, 'voluptates');
-INSERT INTO `jobApplication` (`user_id`, `job_id`, `status`) VALUES (8, 8, 'aut');
-INSERT INTO `jobApplication` (`user_id`, `job_id`, `status`) VALUES (9, 9, 'distinctio');
-INSERT INTO `jobApplication` (`user_id`, `job_id`, `status`) VALUES (10, 10, 'quam');
-INSERT INTO `jobApplication` (`user_id`, `job_id`, `status`) VALUES (1, 1, 'laborum');
-INSERT INTO `jobApplication` (`user_id`, `job_id`, `status`) VALUES (2, 2, 'optio');
-INSERT INTO `jobApplication` (`user_id`, `job_id`, `status`) VALUES (3, 3, 'perferendis');
-INSERT INTO `jobApplication` (`user_id`, `job_id`, `status`) VALUES (4, 4, 'doloribus');
-INSERT INTO `jobApplication` (`user_id`, `job_id`, `status`) VALUES (5, 5, 'repudiandae');
-INSERT INTO `jobApplication` (`user_id`, `job_id`, `status`) VALUES (6, 6, 'totam');
-INSERT INTO `jobApplication` (`user_id`, `job_id`, `status`) VALUES (7, 7, 'illo');
-INSERT INTO `jobApplication` (`user_id`, `job_id`, `status`) VALUES (8, 8, 'architecto');
-INSERT INTO `jobApplication` (`user_id`, `job_id`, `status`) VALUES (9, 9, 'perferendis');
-INSERT INTO `jobApplication` (`user_id`, `job_id`, `status`) VALUES (10, 10, 'numquam');
+
+INSERT INTO `jobApplication` (`user_id`, `job_id`, `status`) VALUES (1, 1, 'pending');
+INSERT INTO `jobApplication` (`user_id`, `job_id`, `status`) VALUES (2, 2, 'pending');
+INSERT INTO `jobApplication` (`user_id`, `job_id`, `status`) VALUES (3, 3, 'pending');
+INSERT INTO `jobApplication` (`user_id`, `job_id`, `status`) VALUES (4, 4, 'pending');
+INSERT INTO `jobApplication` (`user_id`, `job_id`, `status`) VALUES (5, 5,'pending');
+INSERT INTO `jobApplication` (`user_id`, `job_id`, `status`) VALUES (6, 6, 'pending');
+INSERT INTO `jobApplication` (`user_id`, `job_id`, `status`) VALUES (7, 7, 'pending');
+INSERT INTO `jobApplication` (`user_id`, `job_id`, `status`) VALUES (8, 8, 'pending');
+INSERT INTO `jobApplication` (`user_id`, `job_id`, `status`) VALUES (9, 9, 'pending');
+INSERT INTO `jobApplication` (`user_id`, `job_id`, `status`) VALUES (10, 10, 'pending');
 
 
 INSERT INTO `jobskills` (`job_id`, `skill`) VALUES (1, 'voluptas');

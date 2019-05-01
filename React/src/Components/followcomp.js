@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 const $ = window.$;
 // const $ = window.$;
+var user_id = 3;
 class FollowComp extends Component {
     componentDidMount() {
         var element = ReactDOM.findDOMNode(this.refs.fixedactionbtn)
-        
+
         $(element).ready(function () {
             $('.fixed-action-btn').floatingActionButton();
         });
@@ -15,16 +16,37 @@ class FollowComp extends Component {
     state = {
         companies_data: []
     }
-    clickHandler = (e) => {
-        console.log(e);
-        var companies_data = this.state.companies_data.filter((company)=>{
-            return company.id != e;
-        })
-        this.setState({companies_data});
+    clickHandler = (company_id) => {
+        console.log(company_id);
+        let url = "http://localhost:3002/users/followcompany";
+        axios.post(url, {
+            company_id,
+            user_id
+        }).then((response) => {
+            // console.log(response.data);
+            if (response.data.status == 'Succesful') {
+                this.setState({
+                    companies_data: this.state.companies_data.filter((company) => {
+                        return company.id != company_id;
+                    })
+                });
+            } else {
+                console.log('cannot proccess apply on backend');
+            }
+        }).catch((error) => {
+            console.log(error);
+        });
+
+        // var companies_data = this.state.companies_data.filter((company) => {
+        //     return company.id != company_id;
+        // })
+        // this.setState({ companies_data });
     }
 
     companyTemplate = () => {
         var final_template = [];
+        // console.log('sdfds')
+        // console.log(this.state.companies_data);
         this.state.companies_data.forEach((company) => {
             console.log(company);
             var id = company.id;

@@ -8,6 +8,7 @@ import JobPosting from './Components/JobPosting'
 import JobPostDetails from './Components/jobPostDetails';
 import Timeline from './Components/timeline'
 import FollowComp from './Components/followcomp'
+import CompanyTimeline from './Components/ctimeline';
 
 class App extends Component {
   
@@ -22,6 +23,7 @@ class App extends Component {
             <Route path="/jobPosting" component = {JobPosting} />
             <Route path="/jobPostDetails/:id" component={JobPostDetails} />
             <Route path="/timeline" component={Timeline} />
+            <Route path="/ctimeline" component={CompanyTimeline} />
             <Route path="/companies" component={FollowComp} />
             
         </div>
