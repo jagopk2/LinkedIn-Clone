@@ -16,7 +16,7 @@ router.get('/login', function (req, res, next) {
       // res.json({ status: 'Succesful' });
   res.render('login.hbs');
 });
-
+hello wokrl
 router.post('/login', function (req, res, next) {
   passport.authenticate('local-login', { session: true }, function (err, user, info) {
     if (err) { console.log('dsafds'); return next(err); }
