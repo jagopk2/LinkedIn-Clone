@@ -14,6 +14,7 @@ import FollowComp from './Components/followcomp'
 import CompanyTimeline from './Components/ctimeline';
 import ProtectedRoute from './Components/protectedroute';
 import UserProfile from './Components/userprofile';
+import Navbar2 from './Components/navbar2';
 class App extends Component {
 
   
@@ -23,6 +24,7 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <Navbar />
+          {/* <Navbar2/> */}
           <Route exact path="/" component={Home} />
           {/* <ProtectedRoute exact path="/" component={Home} /> */}
           <Route path="/login" component={Login} />
