@@ -15,6 +15,7 @@ router.get('/login', function (req, res, next) {
   console.log(app.name);
   console.log("Errors" + req.flash('loginMessage'));
   console.log("Passport Errors" + req.flash('error'));
+      // res.json({ status: 'Succesful' });
   res.render('login.hbs');
 });
 
