@@ -69,7 +69,7 @@ app.use(function (err, req, res, next) {
 });
 
 indexRouter.post('/upload', upload.single('image'), (req, res) => {
-  console.log('i am call')
+  // console.log('i am call')
   if (req.file)
     res.json({
       imageUrl: `images/uploads/${req.file.filename}`

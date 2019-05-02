@@ -71,7 +71,7 @@ class Ctimeline extends Component {
         let url = 'http://localhost:3002/users/ctimeline'
         axios.post(url)
             .then((response) => {
-                // console.log(response.data);
+                console.log(response.data);
                 this.setState({ timeline_data: response.data });
                 // console.log(this.state.timeline_data);
             })

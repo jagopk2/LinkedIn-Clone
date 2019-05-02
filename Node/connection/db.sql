@@ -34,7 +34,8 @@ CREATE
     password         VARCHAR (250) NOT NULL ,
     address         VARCHAR (250) NOT NULL,
     phoneNumber Integer not null,
-    website VARCHAR (250) NOT NULL
+    website VARCHAR (250) NOT NULL,
+    picture VARCHAR (250) NOT NULL
   ) ;
 CREATE
   TABLE skills
@@ -111,16 +112,16 @@ INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address
 
 
 
-INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`) VALUES (1, 'nesciunt', 'ardella.wyman@example.com', 'commodi', '715 Quigley Spurs\nNew Nelliechester, UT 10056', 1, 'http://www.bradtke.com/');
-INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`) VALUES (2, 'voluptas', 'roxane13@example.org', 'doloremque', '660 Klein Trail\nNew Hailey, WI 12592', 1, 'http://muller.com/');
-INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`) VALUES (3, 'velit', 'schamberger.mandy@example.com', 'facere', '12901 Lura Trail Apt. 825\nSouth Wyatt, NV 89156-2327', 0, 'http://kessler.com/');
-INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`) VALUES (4, 'et', 'kay.walker@example.com', 'accusamus', '12585 Kautzer Vista Apt. 500\nLegrosland, VA 69113-5956', 1, 'http://heller.org/');
-INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`) VALUES (5, 'inventore', 'tate72@example.net', 'voluptatibus', '9965 Muller Circle Suite 363\nNorth Rafaelaport, NJ 78049-8499', 156383, 'http://www.sipes.com/');
-INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`) VALUES (6, 'qui', 'creinger@example.org', 'eum', '25176 Block Forest Apt. 691\nEast Katharina, MS 24752', 918, 'http://www.murphy.com/');
-INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`) VALUES (7, 'cum', 'delaney.hickle@example.net', 'beatae', '9976 Sporer Valleys Suite 074\nKadeside, KY 90349-0213', 19, 'http://www.lang.com/');
-INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`) VALUES (8, 'provident', 'pansy.spencer@example.org', 'praesentium', '816 Abernathy Valleys\nDexterborough, PA 36508', 1, 'http://www.stiedemann.biz/');
-INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`) VALUES (9, 'autem', 'xhoppe@example.com', 'non', '7587 Keaton Mall Suite 341\nBogisichton, NM 28876-3716', 0, 'http://muller.com/');
-INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`) VALUES (10, 'quaerat', 'eloisa.balistreri@example.com', 'ratione', '8850 Ebert Prairie\nReingerborough, WI 51412', 0, 'http://will.com/');
+INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`,`picture`) VALUES (1, 'nesciunt', 'ardella.wyman@example.com', 'commodi', '715 Quigley Spurs\nNew Nelliechester, UT 10056', 1, 'http://www.bradtke.com/','images/uploads/cmp (1).png');
+INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`,`picture`) VALUES (2, 'voluptas', 'roxane13@example.org', 'doloremque', '660 Klein Trail\nNew Hailey, WI 12592', 1, 'http://muller.com/','images/uploads/cmp (2).png');
+INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`,`picture`) VALUES (3, 'velit', 'schamberger.mandy@example.com', 'facere', '12901 Lura Trail Apt. 825\nSouth Wyatt, NV 89156-2327', 0, 'http://kessler.com/','images/uploads/cmp (3).png');
+INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`,`picture`) VALUES (4, 'et', 'kay.walker@example.com', 'accusamus', '12585 Kautzer Vista Apt. 500\nLegrosland, VA 69113-5956', 1, 'http://heller.org/','images/uploads/cmp (4).png');
+INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`,`picture`) VALUES (5, 'inventore', 'tate72@example.net', 'voluptatibus', '9965 Muller Circle Suite 363\nNorth Rafaelaport, NJ 78049-8499', 156383, 'http://www.sipes.com/','images/uploads/cmp (5).png');
+INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`,`picture`) VALUES (6, 'qui', 'creinger@example.org', 'eum', '25176 Block Forest Apt. 691\nEast Katharina, MS 24752', 918, 'http://www.murphy.com/','images/uploads/cmp (6).png');
+INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`,`picture`) VALUES (7, 'cum', 'delaney.hickle@example.net', 'beatae', '9976 Sporer Valleys Suite 074\nKadeside, KY 90349-0213', 19, 'http://www.lang.com/','images/uploads/cmp (7).png');
+INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`,`picture`) VALUES (8, 'provident', 'pansy.spencer@example.org', 'praesentium', '816 Abernathy Valleys\nDexterborough, PA 36508', 1, 'http://www.stiedemann.biz/','images/uploads/cmp (8).png');
+INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`,`picture`) VALUES (9, 'autem', 'xhoppe@example.com', 'non', '7587 Keaton Mall Suite 341\nBogisichton, NM 28876-3716', 0, 'http://muller.com/','images/uploads/cmp (9).png');
+INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`,`picture`) VALUES (10, 'quaerat', 'eloisa.balistreri@example.com', 'ratione', '8850 Ebert Prairie\nReingerborough, WI 51412', 0, 'http://will.com/','images/uploads/cmp (10).png');
 
 INSERT INTO `jobposting` (`id`, `company_id`, `name`, `description`, `field`, `status`) VALUES (1, 1, 'ea', 'Laudantium quia nihil qui eligendi ut nobis. Ea ex veritatis voluptatum fugiat. In odio inventore tempora ipsam qui sint incidunt.', 'harum', 'pending');
 INSERT INTO `jobposting` (`id`, `company_id`, `name`, `description`, `field`, `status`) VALUES (2, 2, 'deserunt', 'Repellendus molestias quam doloribus illum incidunt nam. Delectus ad omnis et voluptatem velit nostrum ut. Vel fuga dicta dolorem. Numquam odio vero sapiente nihil eum tempora reprehenderit.', 'saepe', 'pending');

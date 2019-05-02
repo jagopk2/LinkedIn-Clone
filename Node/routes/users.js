@@ -87,8 +87,11 @@ router.post('/timeline', (req, res, next) => {
     if (error) {
       console.log('cannot Load the timeline\n' + error);
 
-    } else
+    } else{
+      console.log(results[0])
       res.json(results);
+
+    }
     // res.json({ status: 'Succesful' });
 
 
