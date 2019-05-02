@@ -22,7 +22,8 @@ CREATE
     password         VARCHAR (250) NOT NULL ,
     address         VARCHAR (250) NOT NULL,
     phoneNumber Integer not null,
-    field            VARCHAR (250) NOT NULL
+    field            VARCHAR (250) NOT NULL,
+    picture VARCHAR (250) NOT NULL
   ) ;
   CREATE
   TABLE company 
@@ -96,16 +97,16 @@ CREATE
 ALTER TABLE company AUTO_INCREMENT = 11;
 ALTER TABLE user AUTO_INCREMENT = 11;
 
-INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`) VALUES (1, 'Krystel', 'Bernier', 'bailee06@example.org', 'et', '2596 Angelita Inlet Suite 519\nOctaviaport, VT 77231-9005', 33, 'laborum');
-INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`) VALUES (2, 'Chasity', 'Mayer', 'mante.antonina@example.net', 'autem', '60991 Zulauf Extension Apt. 652\nNicklausville, GA 22916', 329388, 'a');
-INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`) VALUES (3, 'Hank', 'Thiel', 'cloyd.predovic@example.org', 'facere', '7031 Princess Loop\nLake Susannaland, CA 20704-1547', 107963, 'voluptatem');
-INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`) VALUES (4, 'Buford', 'Steuber', 'tyreek.schiller@example.com', 'est', '1895 Krista Courts Suite 903\nSouth Clement, NV 62005', 72622, 'aperiam');
-INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`) VALUES (5, 'Evan', 'Hartmann', 'dena71@example.org', 'in', '90210 Georgiana Plain\nHuelsfort, TX 42532', 817086, 'aut');
-INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`) VALUES (6, 'Rosalinda', 'Jaskolski', 'qschulist@example.net', 'doloribus', '28844 Raven Groves Apt. 319\nSouth Trudieville, SC 65024-8426', 432708, 'dolores');
-INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`) VALUES (7, 'Dillan', 'Feeney', 'cmarquardt@example.com', 'beatae', '23678 Rohan Walks\nTillmantown, DC 81977-1483', 90, 'a');
-INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`) VALUES (8, 'Jaylan', 'Mueller', 'ykilback@example.com', 'quisquam', '616 Wehner Extensions\nAddiemouth, OR 27528', 0, 'a');
-INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`) VALUES (9, 'Amber', 'Hettinger', 'omarquardt@example.com', 'atque', '0887 Darrion Lane Suite 356\nPort Havenstad, CT 48138-7193', 1, 'veritatis');
-INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`) VALUES (10, 'Austin', 'Stanton', 'friesen.halie@example.net', 'incidunt', '211 Yessenia Ridge\nFeeneyville, CO 33253', 1, 'pariatur');
+INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (1, 'Krystel', 'Bernier', 'bailee06@example.org', 'et', '2596 Angelita Inlet Suite 519\nOctaviaport, VT 77231-9005', 33, 'laborum','images/uploads/img (1).png');
+INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (2, 'Chasity', 'Mayer', 'mante.antonina@example.net', 'autem', '60991 Zulauf Extension Apt. 652\nNicklausville, GA 22916', 329388, 'a','images/uploads/img (2).png');
+INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (3, 'Hank', 'Thiel', 'cloyd.predovic@example.org', 'facere', '7031 Princess Loop\nLake Susannaland, CA 20704-1547', 107963, 'voluptatem','images/uploads/img (3).png');
+INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (4, 'Buford', 'Steuber', 'tyreek.schiller@example.com', 'est', '1895 Krista Courts Suite 903\nSouth Clement, NV 62005', 72622, 'aperiam','images/uploads/img (4).png');
+INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (5, 'Evan', 'Hartmann', 'dena71@example.org', 'in', '90210 Georgiana Plain\nHuelsfort, TX 42532', 817086, 'aut','images/uploads/img (5).png');
+INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (6, 'Rosalinda', 'Jaskolski', 'qschulist@example.net', 'doloribus', '28844 Raven Groves Apt. 319\nSouth Trudieville, SC 65024-8426', 432708, 'dolores','images/uploads/img (6).png');
+INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (7, 'Dillan', 'Feeney', 'cmarquardt@example.com', 'beatae', '23678 Rohan Walks\nTillmantown, DC 81977-1483', 90, 'a','images/uploads/img (7).png');
+INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (8, 'Jaylan', 'Mueller', 'ykilback@example.com', 'quisquam', '616 Wehner Extensions\nAddiemouth, OR 27528', 0, 'a','images/uploads/img (8).png');
+INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (9, 'Amber', 'Hettinger', 'omarquardt@example.com', 'atque', '0887 Darrion Lane Suite 356\nPort Havenstad, CT 48138-7193', 1, 'veritatis','images/uploads/img (9).png');
+INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (10, 'Austin', 'Stanton', 'friesen.halie@example.net', 'incidunt', '211 Yessenia Ridge\nFeeneyville, CO 33253', 1, 'pariatur','images/uploads/img (10).png');
 
 
 

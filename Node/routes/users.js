@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var connection = require('../connection/sql');
 var passport = require('../config/passport');
+var app = require('../app');
 /* GET users listing. */
 
 var user_id = 3;
@@ -11,6 +12,7 @@ router.get('/', function (req, res, next) {
 
 router.get('/login', function (req, res, next) {
   // console.log(req)
+  console.log(app.name);
   console.log("Errors" + req.flash('loginMessage'));
   console.log("Passport Errors" + req.flash('error'));
   res.render('login.hbs');
@@ -39,8 +41,9 @@ router.post('/signup', (req, res, next) => {
   var field = req.body.field
   var email = req.body.email
   var password = req.body.password
-  console.log("INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`) VALUES " + `( '${firstname}', '${lastname}', '${email}', '${password}', '${address}',  ${phonenumber}, '${field}');`);
-  connection.query("INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`) VALUES " + `( '${firstname}', '${lastname}', '${email}', '${password}', '${address}',  ${phonenumber}, '${field}');`, function (error, results, fields) {
+  var picture = req.body.picture;
+  // console.log("INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES " + `( '${firstname}', '${lastname}', '${email}', '${password}', '${address}',  ${phonenumber}, '${field}','${picture}');`);
+  connection.query("INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES " + `( '${firstname}', '${lastname}', '${email}', '${password}', '${address}',  ${phonenumber}, '${field}','${picture}');`, function (error, results, fields) {
     if (error) {
       console.log('cannot insert the user\n' + error);
 
