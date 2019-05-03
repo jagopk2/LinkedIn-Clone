@@ -8,9 +8,9 @@ class FollowComp extends Component {
     componentDidMount() {
         var element = ReactDOM.findDOMNode(this.refs.fixedactionbtn)
 
-        $(element).ready(function () {
-            $('.fixed-action-btn').floatingActionButton();
-        });
+        // $(element).ready(function () {
+        //     $('.fixed-action-btn').floatingActionButton();
+        // });
     }
 
     state = {
@@ -52,38 +52,20 @@ class FollowComp extends Component {
             var id = company.id;
             final_template.push(
 
-                <div class="col s6 m3">
-                    <div class="card">
-                        <div class="card-image">
-                            <img src="https://via.placeholder.com/50" />
-                            <span class="card-title">{company.name}</span>
-                            <a class="btn-floating halfway-fab waves-effect waves-light red" onClick={() => this.clickHandler(id)}><i class="material-icons">add</i></a>
-                            {/* <div class="fixed-action-btn" ref="fixedactionbtn">
-                                <a class="btn-floating btn-large red">
-                                    <i class="large material-icons">mode_edit</i>
-                                </a>
-                                <ul>
-                                    <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-                                    <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-                                    <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-                                    <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
-                                </ul>
-                            </div> */}
-
-                        </div>
-                        <div class="card-content">
-                            <p>{company.address}</p>
-                            Phone Number = <b>{company.phoneNumber}</b><br />
-                            <a href={company.website}>Visit our Website</a>
-                        </div>
-
+                <div className="col-lg-3 col-md-4 col-sm-6">
+                  <div className="company_profile_info">
+                    <div className="company-up-info">
+                      <img src={company.picture} alt />
+                      <h3>{company.name}</h3>
+                      <h4>{company.address}</h4>
+                      <ul>
+                        <li><a href="#" title className="follow"  onClick={() => this.clickHandler(id)}> Follow </a> </li>
+                        <li><a href={company.website} title className="message-us"><i className="fa fa-envelope" /></a></li>
+                      </ul>
                     </div>
+                    {/* <a href="#" title className="view-more-pro">View Profile</a> */}
+                  </div>{/*company_profile_info end*/}
                 </div>
-
-
-
-
-
             )
 
         })
@@ -107,12 +89,16 @@ class FollowComp extends Component {
     render() {
         var final_template = this.companyTemplate();
         return (
-
-            <div className="container">
-                <div className="row">
-                    {final_template}
-                </div>
-            </div>
+            <div className="wrapper">
+        <section className="companies-info">
+          <div className="container">
+            <div className="company-title">
+              <h3>All Companies</h3>
+            </div>{/*company-title end*/}
+            {final_template}
+          </div>
+        </section>{/*companies-info end*/}
+      </div>
         );
     }
 }

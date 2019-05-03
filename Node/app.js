@@ -26,6 +26,7 @@ app.use(logger('dev'));
 // app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname + '/data/img'));
 app.use(session({
   secret: 'mysecret',
   store: new MySQLStore({

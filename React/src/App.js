@@ -23,8 +23,8 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <Navbar />
-          {/* <Navbar2/> */}
+          {/* <Navbar /> */}
+          <Navbar2/>
           <Route exact path="/" component={Home} />
           {/* <ProtectedRoute exact path="/" component={Home} /> */}
           <Route path="/login" component={Login} />
