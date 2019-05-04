@@ -93,35 +93,59 @@ CREATE
     Foreign key (company_id) references company(id),
     Foreign key (user_id) references user(id)
   );
-  
+create table userfollowing(
+  user_id INT not null,
+  follower_id INT not null,
+    FOREIGN key (user_id) REFERENCES user(id),
+    FOREIGN key (follower_id) REFERENCES user(id)
+)
+
+
+
   ALTER TABLE jobposting AUTO_INCREMENT = 11;
 ALTER TABLE company AUTO_INCREMENT = 11;
 ALTER TABLE user AUTO_INCREMENT = 11;
 
-INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (1, 'Krystel', 'Bernier', 'bailee06@example.org', 'et', '2596 Angelita Inlet Suite 519\nOctaviaport, VT 77231-9005', 33, 'laborum','images/uploads/img (1).png');
-INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (2, 'Chasity', 'Mayer', 'mante.antonina@example.net', 'autem', '60991 Zulauf Extension Apt. 652\nNicklausville, GA 22916', 329388, 'a','images/uploads/img (2).png');
-INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (3, 'Hank', 'Thiel', 'cloyd.predovic@example.org', 'facere', '7031 Princess Loop\nLake Susannaland, CA 20704-1547', 107963, 'voluptatem','images/uploads/img (3).png');
-INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (4, 'Buford', 'Steuber', 'tyreek.schiller@example.com', 'est', '1895 Krista Courts Suite 903\nSouth Clement, NV 62005', 72622, 'aperiam','images/uploads/img (4).png');
-INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (5, 'Evan', 'Hartmann', 'dena71@example.org', 'in', '90210 Georgiana Plain\nHuelsfort, TX 42532', 817086, 'aut','images/uploads/img (5).png');
-INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (6, 'Rosalinda', 'Jaskolski', 'qschulist@example.net', 'doloribus', '28844 Raven Groves Apt. 319\nSouth Trudieville, SC 65024-8426', 432708, 'dolores','images/uploads/img (6).png');
-INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (7, 'Dillan', 'Feeney', 'cmarquardt@example.com', 'beatae', '23678 Rohan Walks\nTillmantown, DC 81977-1483', 90, 'a','images/uploads/img (7).png');
-INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (8, 'Jaylan', 'Mueller', 'ykilback@example.com', 'quisquam', '616 Wehner Extensions\nAddiemouth, OR 27528', 0, 'a','images/uploads/img (8).png');
-INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (9, 'Amber', 'Hettinger', 'omarquardt@example.com', 'atque', '0887 Darrion Lane Suite 356\nPort Havenstad, CT 48138-7193', 1, 'veritatis','images/uploads/img (9).png');
-INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (10, 'Austin', 'Stanton', 'friesen.halie@example.net', 'incidunt', '211 Yessenia Ridge\nFeeneyville, CO 33253', 1, 'pariatur','images/uploads/img (10).png');
+insert into userfollowing (user_id,follower_id) VALUES (1,2);
+insert into userfollowing (user_id,follower_id) VALUES (1,3);
+insert into userfollowing (user_id,follower_id) VALUES (1,4);
+insert into userfollowing (user_id,follower_id) VALUES (1,5);
+insert into userfollowing (user_id,follower_id) VALUES (1,6);
+
+insert into userfollowing (user_id,follower_id) VALUES (2,7);
+insert into userfollowing (user_id,follower_id) VALUES (2,3);
+
+insert into userfollowing (user_id,follower_id) VALUES (3,4);
+insert into userfollowing (user_id,follower_id) VALUES (3,7);
+insert into userfollowing (user_id,follower_id) VALUES (3,9);
+insert into userfollowing (user_id,follower_id) VALUES (3,6);
+
+
+
+INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (1, 'Krystel', 'Bernier', 'bailee06@example.org', 'et', '2596 Angelita Inlet Suite 519\nOctaviaport, VT 77231-9005', 33, 'laborum','img (1).png');
+INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (2, 'Chasity', 'Mayer', 'mante.antonina@example.net', 'autem', '60991 Zulauf Extension Apt. 652\nNicklausville, GA 22916', 329388, 'a','img (2).png');
+INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (3, 'Hank', 'Thiel', 'cloyd.predovic@example.org', 'facere', '7031 Princess Loop\nLake Susannaland, CA 20704-1547', 107963, 'voluptatem','img (3).png');
+INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (4, 'Buford', 'Steuber', 'tyreek.schiller@example.com', 'est', '1895 Krista Courts Suite 903\nSouth Clement, NV 62005', 72622, 'aperiam','img (4).png');
+INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (5, 'Evan', 'Hartmann', 'dena71@example.org', 'in', '90210 Georgiana Plain\nHuelsfort, TX 42532', 817086, 'aut','img (5).png');
+INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (6, 'Rosalinda', 'Jaskolski', 'qschulist@example.net', 'doloribus', '28844 Raven Groves Apt. 319\nSouth Trudieville, SC 65024-8426', 432708, 'dolores','img (6).png');
+INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (7, 'Dillan', 'Feeney', 'cmarquardt@example.com', 'beatae', '23678 Rohan Walks\nTillmantown, DC 81977-1483', 90, 'a','img (7).png');
+INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (8, 'Jaylan', 'Mueller', 'ykilback@example.com', 'quisquam', '616 Wehner Extensions\nAddiemouth, OR 27528', 0, 'a','img (8).png');
+INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (9, 'Amber', 'Hettinger', 'omarquardt@example.com', 'atque', '0887 Darrion Lane Suite 356\nPort Havenstad, CT 48138-7193', 1, 'veritatis','img (9).png');
+INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (10, 'Austin', 'Stanton', 'friesen.halie@example.net', 'incidunt', '211 Yessenia Ridge\nFeeneyville, CO 33253', 1, 'pariatur','img (10).png');
 
 
 
 
-INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`,`picture`) VALUES (1, 'nesciunt', 'ardella.wyman@example.com', 'commodi', '715 Quigley Spurs\nNew Nelliechester, UT 10056', 1, 'http://www.bradtke.com/','images/uploads/cmp (1).png');
-INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`,`picture`) VALUES (2, 'voluptas', 'roxane13@example.org', 'doloremque', '660 Klein Trail\nNew Hailey, WI 12592', 1, 'http://muller.com/','images/uploads/cmp (2).png');
-INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`,`picture`) VALUES (3, 'velit', 'schamberger.mandy@example.com', 'facere', '12901 Lura Trail Apt. 825\nSouth Wyatt, NV 89156-2327', 0, 'http://kessler.com/','images/uploads/cmp (3).png');
-INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`,`picture`) VALUES (4, 'et', 'kay.walker@example.com', 'accusamus', '12585 Kautzer Vista Apt. 500\nLegrosland, VA 69113-5956', 1, 'http://heller.org/','images/uploads/cmp (4).png');
-INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`,`picture`) VALUES (5, 'inventore', 'tate72@example.net', 'voluptatibus', '9965 Muller Circle Suite 363\nNorth Rafaelaport, NJ 78049-8499', 156383, 'http://www.sipes.com/','images/uploads/cmp (5).png');
-INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`,`picture`) VALUES (6, 'qui', 'creinger@example.org', 'eum', '25176 Block Forest Apt. 691\nEast Katharina, MS 24752', 918, 'http://www.murphy.com/','images/uploads/cmp (6).png');
-INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`,`picture`) VALUES (7, 'cum', 'delaney.hickle@example.net', 'beatae', '9976 Sporer Valleys Suite 074\nKadeside, KY 90349-0213', 19, 'http://www.lang.com/','images/uploads/cmp (7).png');
-INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`,`picture`) VALUES (8, 'provident', 'pansy.spencer@example.org', 'praesentium', '816 Abernathy Valleys\nDexterborough, PA 36508', 1, 'http://www.stiedemann.biz/','images/uploads/cmp (8).png');
-INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`,`picture`) VALUES (9, 'autem', 'xhoppe@example.com', 'non', '7587 Keaton Mall Suite 341\nBogisichton, NM 28876-3716', 0, 'http://muller.com/','images/uploads/cmp (9).png');
-INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`,`picture`) VALUES (10, 'quaerat', 'eloisa.balistreri@example.com', 'ratione', '8850 Ebert Prairie\nReingerborough, WI 51412', 0, 'http://will.com/','images/uploads/cmp (10).png');
+INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`,`picture`) VALUES (1, 'nesciunt', 'ardella.wyman@example.com', 'commodi', '715 Quigley Spurs\nNew Nelliechester, UT 10056', 1, 'http://www.bradtke.com/','cmp (1).png');
+INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`,`picture`) VALUES (2, 'voluptas', 'roxane13@example.org', 'doloremque', '660 Klein Trail\nNew Hailey, WI 12592', 1, 'http://muller.com/','cmp (2).png');
+INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`,`picture`) VALUES (3, 'velit', 'schamberger.mandy@example.com', 'facere', '12901 Lura Trail Apt. 825\nSouth Wyatt, NV 89156-2327', 0, 'http://kessler.com/','cmp (3).png');
+INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`,`picture`) VALUES (4, 'et', 'kay.walker@example.com', 'accusamus', '12585 Kautzer Vista Apt. 500\nLegrosland, VA 69113-5956', 1, 'http://heller.org/','cmp (4).png');
+INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`,`picture`) VALUES (5, 'inventore', 'tate72@example.net', 'voluptatibus', '9965 Muller Circle Suite 363\nNorth Rafaelaport, NJ 78049-8499', 156383, 'http://www.sipes.com/','cmp (5).png');
+INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`,`picture`) VALUES (6, 'qui', 'creinger@example.org', 'eum', '25176 Block Forest Apt. 691\nEast Katharina, MS 24752', 918, 'http://www.murphy.com/','cmp (6).png');
+INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`,`picture`) VALUES (7, 'cum', 'delaney.hickle@example.net', 'beatae', '9976 Sporer Valleys Suite 074\nKadeside, KY 90349-0213', 19, 'http://www.lang.com/','cmp (7).png');
+INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`,`picture`) VALUES (8, 'provident', 'pansy.spencer@example.org', 'praesentium', '816 Abernathy Valleys\nDexterborough, PA 36508', 1, 'http://www.stiedemann.biz/','cmp (8).png');
+INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`,`picture`) VALUES (9, 'autem', 'xhoppe@example.com', 'non', '7587 Keaton Mall Suite 341\nBogisichton, NM 28876-3716', 0, 'http://muller.com/','cmp (9).png');
+INSERT INTO `company` (`id`, `name`, `email`, `password`, `address`, `phoneNumber`, `website`,`picture`) VALUES (10, 'quaerat', 'eloisa.balistreri@example.com', 'ratione', '8850 Ebert Prairie\nReingerborough, WI 51412', 0, 'http://will.com/','cmp (10).png');
 
 INSERT INTO `jobposting` (`id`, `company_id`, `name`, `description`, `field`, `status`) VALUES (1, 1, 'ea', 'Laudantium quia nihil qui eligendi ut nobis. Ea ex veritatis voluptatum fugiat. In odio inventore tempora ipsam qui sint incidunt.', 'harum', 'pending');
 INSERT INTO `jobposting` (`id`, `company_id`, `name`, `description`, `field`, `status`) VALUES (2, 2, 'deserunt', 'Repellendus molestias quam doloribus illum incidunt nam. Delectus ad omnis et voluptatem velit nostrum ut. Vel fuga dicta dolorem. Numquam odio vero sapiente nihil eum tempora reprehenderit.', 'saepe', 'pending');

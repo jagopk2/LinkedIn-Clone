@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+
 const $ = window.$;
 // const $ = window.$;
 var user_id = 3;
+// var final_template = ['<div>Loading</div>'];
 class FollowComp extends Component {
     componentDidMount() {
         var element = ReactDOM.findDOMNode(this.refs.fixedactionbtn)
@@ -12,9 +14,9 @@ class FollowComp extends Component {
         //     $('.fixed-action-btn').floatingActionButton();
         // });
     }
-
     state = {
-        companies_data: []
+        companies_data: [],
+        follow: true
     }
     clickHandler = (company_id) => {
         console.log(company_id);
@@ -37,38 +39,40 @@ class FollowComp extends Component {
             console.log(error);
         });
 
-        // var companies_data = this.state.companies_data.filter((company) => {
-        //     return company.id != company_id;
-        // })
-        // this.setState({ companies_data });
     }
+
+
+
 
     companyTemplate = () => {
         var final_template = [];
         // console.log('sdfds')
-        // console.log(this.state.companies_data);
         this.state.companies_data.forEach((company) => {
-            console.log(company);
+            var companypicture = `http://localhost:3002/download/${company.picture}`;
             var id = company.id;
             final_template.push(
-
                 <div className="col-lg-3 col-md-4 col-sm-6">
-                  <div className="company_profile_info">
+                <div className="company_profile_info">
                     <div className="company-up-info">
-                      <img src={company.picture} alt />
-                      <h3>{company.name}</h3>
-                      <h4>{company.address}</h4>
-                      <ul>
-                        <li><a href="#" title className="follow"  onClick={() => this.clickHandler(id)}> Follow </a> </li>
-                        <li><a href={company.website} title className="message-us"><i className="fa fa-envelope" /></a></li>
-                      </ul>
+                        <img src={companypicture} alt />
+                        <h3>{company.name}</h3>
+                        <h4>{company.address}</h4>
+                        <ul>
+                            <li><a href="#" title className="follow" onClick={() => this.clickHandler(company.id)}> Follow </a> </li>
+                            <li><a href={company.website} title className="message-us"><i className="fa fa-envelope" /></a></li>
+                        </ul>
                     </div>
                     {/* <a href="#" title className="view-more-pro">View Profile</a> */}
-                  </div>{/*company_profile_info end*/}
-                </div>
+                </div>{/*company_profile_info end*/}
+            </div>
+
             )
 
         })
+
+        // console.log(this.state.companies_data);
+
+        console.log(final_template)
         return final_template;
     }
 
@@ -83,22 +87,29 @@ class FollowComp extends Component {
             .catch((error) => {
                 console.log(error);
             });
-    }
 
+            console.log()
+    }
 
     render() {
         var final_template = this.companyTemplate();
+        console.log(final_template);
         return (
             <div className="wrapper">
-        <section className="companies-info">
-          <div className="container">
-            <div className="company-title">
-              <h3>All Companies</h3>
-            </div>{/*company-title end*/}
-            {final_template}
-          </div>
-        </section>{/*companies-info end*/}
-      </div>
+                <section className="companies-info">
+                    <div className="container">
+                        <div className="company-title">
+                            <h3>All Companies</h3>
+                        </div>{/*company-title end*/}
+                        <div className="companies-list">
+                            <div className="row">
+
+                                {final_template}
+                            </div>
+                        </div>
+                    </div>
+                </section>{/*companies-info end*/}
+            </div>
         );
     }
 }

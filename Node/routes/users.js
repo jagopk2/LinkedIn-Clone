@@ -84,13 +84,16 @@ router.post('/isauthenticated', (req, res, next) => {
 });
 router.post('/timeline', (req, res, next) => {
 
-  connection.query(`select j.id as job_id,j.company_id ,j.name as job_name,j.field,j.status,c.name as company_name ,c.website,j.description from jobposting j,company c where c.id = j.company_id and j.status = 'pending' and j.id not in (select job_id from jobapplication where user_id=${user_id});`, function (error, results, fields) {
+  connection.query(`select j.id as job_id,j.company_id ,j.name as job_name,j.field,j.status,c.name as company_name ,c.picture ,c.website,j.description from jobposting j,company c where c.id = j.company_id and j.status = 'pending' and j.id not in (select job_id from jobapplication where user_id=${user_id});`, function (error, results, fields) {
     if (error) {
       console.log('cannot Load the timeline\n' + error);
 
     } else{
       console.log(results[0])
-      res.json(results);
+      var final = {
+        timeline_result : results
+      }
+      res.json(final);
 
     }
     // res.json({ status: 'Succesful' });
@@ -108,6 +111,39 @@ router.post('/companies', (req, res, next) => {
       if (results.length >= 0) {
         console.log(results);
         res.json(results);
+      }
+    // res.json({ status: 'Succesful' });
+
+
+  });
+});
+
+router.post('/getcompany', (req, res, next) => {
+  var company_id = req.body.company_id;
+ console.log(company_id)
+  connection.query(`select * from company where id = ${company_id}`, function (error, results, fields) {
+    if (error) {
+      console.log('cannot Find any Company\n' + error);
+
+    } else
+      if (results.length >= 0) {
+        res.json(results[0]);
+      }
+    // res.json({ status: 'Succesful' });
+
+
+  });
+});
+router.post('/getuser', (req, res, next) => {
+  var user_id = req.body.user_id;
+ console.log(user_id)
+  connection.query(`select * from user where id = ${user_id}`, function (error, results, fields) {
+    if (error) {
+      console.log('cannot Find any Users\n' + error);
+
+    } else
+      if (results.length >= 0) {
+        res.json(results[0]);
       }
     // res.json({ status: 'Succesful' });
 
@@ -158,7 +194,24 @@ router.post('/followcompany', (req, res, next) => {
   // connection.query(`SELECT 'Hello world' FROM DUAL;`, function (error, results, fields) {
   connection.query(`insert into following (user_id,company_id) Values (${user_id},${company_id});`, function (error, results, fields) {
     if (error) {
-      console.log('Error Inserting Following Table\n' + error);
+      console.log('Error Inserting into Company Following Table\n' + error);
+      res.json({ status: 'UnSuccesful', error: error });
+
+    } else
+      res.json({ status: 'Succesful' });
+  });
+});
+
+router.post('/followuser', (req, res, next) => {
+
+  var user_id = req.body.user_id;
+  var follower_id = req.body.follower_id;
+  console.log(follower_id);
+  console.log(user_id);
+  // connection.query(`SELECT 'Hello world' FROM DUAL;`, function (error, results, fields) {
+  connection.query(`insert into userfollowing (user_id,follower_id) Values (${user_id},${follower_id});`, function (error, results, fields) {
+    if (error) {
+      console.log('Error Inserting into User Following Table\n' + error);
       res.json({ status: 'UnSuccesful', error: error });
 
     } else

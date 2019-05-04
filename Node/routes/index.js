@@ -11,6 +11,7 @@ router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express1' });
 });
 
+
 // router.post('/upload', upload.single('image'), (req, res) => {
 //   console.log('i am call')
 //   if (req.file)

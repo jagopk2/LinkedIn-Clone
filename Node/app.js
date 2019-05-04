@@ -26,7 +26,6 @@ app.use(logger('dev'));
 // app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(__dirname + '/data/img'));
 app.use(session({
   secret: 'mysecret',
   store: new MySQLStore({
@@ -69,11 +68,21 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
+indexRouter.get('/download/:name', function(req, res){
+  var name = req.params.name;
+  console.log(__dirname);
+  // var file = __dirname + '/public/images/uploads/1556808251266-FB_IMG_1555820218818.jpg';
+  var file = __dirname + `/public/images/uploads/${name}`;
+  // console.log(file);
+  // res.send(file);
+  res.download(file); // Set disposition and send it.
+});
+
 indexRouter.post('/upload', upload.single('image'), (req, res) => {
   // console.log('i am call')
   if (req.file)
     res.json({
-      imageUrl: `images/uploads/${req.file.filename}`
+      imageUrl: `${req.file.filename}`
     });
   else
     res.status("409").json("No Files to Upload.");
