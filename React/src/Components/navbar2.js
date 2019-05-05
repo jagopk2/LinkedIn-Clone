@@ -1,5 +1,14 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure({
+  autoClose: 5000, 
+  position: toast.POSITION.TOP_CENTER,
+  
+  //etc you get the idea
+});
 var user_id =3 ;
  class Navbar extends Component{
   componentWillMount(){
@@ -19,10 +28,16 @@ var user_id =3 ;
 
    }
    state={
-     user:{
-      name : 'default name'
-     }
+     user:null
      
+   }
+   logout(){
+     localStorage.clear();
+     toast("Succesfully Logged out..!", {
+                  
+      onClose: () => {}
+    });
+
    }
     render() {
       if(this.state.user){
@@ -49,29 +64,21 @@ var user_id =3 ;
                         </a>
                       </li>
                       <li>
-                        <a href="companies" title>
+                        <a href="/companies" title>
                           <span><img src="images/icon2.png" alt /></span>
                           Companies
                         </a>
                       </li>
+                      
                       <li>
-                        <a href="projects.html" title>
-                          <span><img src="images/icon3.png" alt /></span>
-                          Projects
-                        </a>
-                      </li>
-                      <li>
-                        <a href="profiles.html" title>
+                        <a href="/followusers" title>
                           <span><img src="images/icon4.png" alt /></span>
                           Profiles
                         </a>
-                        <ul>
-                          <li><a href="user-profile.html" title>User Profile</a></li>
-                          <li><a href="my-profile-feed.html" title>my-profile-feed</a></li>
-                        </ul>
+                        
                       </li>
                       <li>
-                        <a href="jobs.html" title>
+                        <a href="/ctimeline" title>
                           <span><img src="images/icon5.png" alt /></span>
                           Jobs
                         </a>
@@ -91,13 +98,13 @@ var user_id =3 ;
                     <div className="user-account-settingss">
                       <h3>Setting</h3>
                       <ul className="us-links">
-                        <li><a href="/profile" title>Profile</a></li>
+                        <li><a href={"/uprofile/"+user_id} title>Profile</a></li>
                         <li><a href="profile-account-setting.html" title>Account Setting</a></li>
                         <li><a href="#" title>Privacy</a></li>
                         <li><a href="#" title>Faqs</a></li>
                         <li><a href="#" title>Terms &amp; Conditions</a></li>
                       </ul>
-                      <h3 className="tc"><a href="#" title>Logout</a></h3>
+                      <h3 className="tc"><a href="/login" title onClick= {this.logout}>Logout</a></h3>
                     </div>{/*user-account-settingss end*/}
                   </div>
                 </div>{/*header-data end*/}

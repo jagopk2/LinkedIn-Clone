@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import ReactTimeout from 'react-timeout'
+
 const $ = window.$;
 // const $ = window.$;
 var user_id = 3;
 var final_template = [];
+var skills = [];
 class Timeline extends Component {
     componentDidMount() {
 
@@ -12,7 +15,8 @@ class Timeline extends Component {
 
     state = {
         timeline_data: [],
-        companies_data: []
+        companies_data: [],
+        skills: []
     }
     applicationHandler = (job_id) => {
         let url = 'http://localhost:3002/users/apply'
@@ -21,12 +25,14 @@ class Timeline extends Component {
             user_id
         })
             .then((response) => {
-                console.log(response.data)
+                
                 if (response.data.status == 'Succesful') {
+                    
                     this.setState({
                         timeline_data: this.state.timeline_data.filter((job) => {
                             return job.job_id != job_id;
                         })
+                        
                     });
                 } else {
                     console.log('cannot proccess apply on backend');
@@ -38,10 +44,33 @@ class Timeline extends Component {
                 console.log(error);
             });
     }
+    //pending
+    getskills = (job_id)=> {
+        skills = [];
+        let url = 'http://localhost:3002/users/getskills';
+        axios.post(url, {
+            job_id
+        })
+            .then((response) => {
+                // console.log(response.data);
+                response.data.forEach((skill) => {
+                    skills.push(
+                    <li><a href="#" title>{skill}</a></li>
+                    )
+                })
+                // console.log(this.state.timeline_data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+            return skills;
+    }
     jobTemplate = () => {
 
         //     var final_template = [];
         this.state.timeline_data.forEach((job) => {
+        //    var  myskills = this.getskills(job.id);
+            // console.log(skills)
             console.log(job);
             final_template.push(
                 <div>
@@ -75,12 +104,17 @@ class Timeline extends Component {
                                         </ul>
                                         <p>{job.description}... <a href={job.website} title>view more</a></p>
                                         <ul className="skill-tags">
-                                            <li><a href="#" title>HTML</a></li>
+                                            {/* {myskills} */}
+                                            {/* <li><a href="#" title>HTML</a></li>
                                             <li><a href="#" title>PHP</a></li>
                                             <li><a href="#" title>CSS</a></li>
                                             <li><a href="#" title>Javascript</a></li>
-                                            <li><a href="#" title>Wordpress</a></li>
+                                            <li><a href="#" title>Wordpress</a></li> */}
                                         </ul>
+                                    </div>
+                                    <div className="epi-sec">
+                                        
+                                        <button className="btn btn-danger center" onClick={()=>{this.applicationHandler(job.job_id)}}>apply</button>
                                     </div>
 
                                 </div>
@@ -109,6 +143,7 @@ class Timeline extends Component {
                 var companies_data = [];
                 console.log(response.data);
 
+
                 this.setState({ timeline_data: response.data.timeline_result });
                 // console.log(this.state.timeline_data);
             })
@@ -117,6 +152,8 @@ class Timeline extends Component {
             });
 
     }
+
+  
 
 
     render() {
@@ -127,8 +164,8 @@ class Timeline extends Component {
                     <div class="container">
                         <div class="main-section-data">
                             <div class="row">
-                 
-                                
+
+
                                 {final_template}
                             </div>
                         </div>

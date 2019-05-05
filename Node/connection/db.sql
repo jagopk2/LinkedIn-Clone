@@ -23,7 +23,9 @@ CREATE
     address         VARCHAR (250) NOT NULL,
     phoneNumber Integer not null,
     field            VARCHAR (250) NOT NULL,
-    picture VARCHAR (250) NOT NULL
+    picture VARCHAR (250) NOT NULL,
+    cv VARCHAR (250) NOT NULL,
+    wallet Integer DEFAULT 0
   ) ;
   CREATE
   TABLE company 
@@ -61,7 +63,7 @@ CREATE
     name               VARCHAR (250) ,
     description            VARCHAR (250) ,
     field              VARCHAR (250) ,
-    status             VARCHAR (250) ,
+    status             VARCHAR (250) DEFAULT 'pending' ,
        Foreign key (company_id) references company(id)
   ) ;
 CREATE
@@ -94,44 +96,26 @@ CREATE
     Foreign key (user_id) references user(id)
   );
 create table userfollowing(
-  user_id INT not null,
-  follower_id INT not null,
+  user_id Integer not null,
+  follower_id Integer not null,
     FOREIGN key (user_id) REFERENCES user(id),
     FOREIGN key (follower_id) REFERENCES user(id)
-)
+);
 
 
 
-  ALTER TABLE jobposting AUTO_INCREMENT = 11;
-ALTER TABLE company AUTO_INCREMENT = 11;
-ALTER TABLE user AUTO_INCREMENT = 11;
-
-insert into userfollowing (user_id,follower_id) VALUES (1,2);
-insert into userfollowing (user_id,follower_id) VALUES (1,3);
-insert into userfollowing (user_id,follower_id) VALUES (1,4);
-insert into userfollowing (user_id,follower_id) VALUES (1,5);
-insert into userfollowing (user_id,follower_id) VALUES (1,6);
-
-insert into userfollowing (user_id,follower_id) VALUES (2,7);
-insert into userfollowing (user_id,follower_id) VALUES (2,3);
-
-insert into userfollowing (user_id,follower_id) VALUES (3,4);
-insert into userfollowing (user_id,follower_id) VALUES (3,7);
-insert into userfollowing (user_id,follower_id) VALUES (3,9);
-insert into userfollowing (user_id,follower_id) VALUES (3,6);
 
 
-
-INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (1, 'Krystel', 'Bernier', 'bailee06@example.org', 'et', '2596 Angelita Inlet Suite 519\nOctaviaport, VT 77231-9005', 33, 'laborum','img (1).png');
-INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (2, 'Chasity', 'Mayer', 'mante.antonina@example.net', 'autem', '60991 Zulauf Extension Apt. 652\nNicklausville, GA 22916', 329388, 'a','img (2).png');
-INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (3, 'Hank', 'Thiel', 'cloyd.predovic@example.org', 'facere', '7031 Princess Loop\nLake Susannaland, CA 20704-1547', 107963, 'voluptatem','img (3).png');
-INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (4, 'Buford', 'Steuber', 'tyreek.schiller@example.com', 'est', '1895 Krista Courts Suite 903\nSouth Clement, NV 62005', 72622, 'aperiam','img (4).png');
-INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (5, 'Evan', 'Hartmann', 'dena71@example.org', 'in', '90210 Georgiana Plain\nHuelsfort, TX 42532', 817086, 'aut','img (5).png');
-INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (6, 'Rosalinda', 'Jaskolski', 'qschulist@example.net', 'doloribus', '28844 Raven Groves Apt. 319\nSouth Trudieville, SC 65024-8426', 432708, 'dolores','img (6).png');
-INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (7, 'Dillan', 'Feeney', 'cmarquardt@example.com', 'beatae', '23678 Rohan Walks\nTillmantown, DC 81977-1483', 90, 'a','img (7).png');
-INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (8, 'Jaylan', 'Mueller', 'ykilback@example.com', 'quisquam', '616 Wehner Extensions\nAddiemouth, OR 27528', 0, 'a','img (8).png');
-INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (9, 'Amber', 'Hettinger', 'omarquardt@example.com', 'atque', '0887 Darrion Lane Suite 356\nPort Havenstad, CT 48138-7193', 1, 'veritatis','img (9).png');
-INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`) VALUES (10, 'Austin', 'Stanton', 'friesen.halie@example.net', 'incidunt', '211 Yessenia Ridge\nFeeneyville, CO 33253', 1, 'pariatur','img (10).png');
+INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`,`cv`,`wallet`) VALUES (1, 'Krystel', 'Bernier', 'bailee06@example.org', 'et', '2596 Angelita Inlet Suite 519\nOctaviaport, VT 77231-9005', 33, 'laborum','img (1).png','cv (1).png',11);
+INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`,`cv`,`wallet`) VALUES (2, 'Chasity', 'Mayer', 'mante.antonina@example.net', 'autem', '60991 Zulauf Extension Apt. 652\nNicklausville, GA 22916', 329388, 'a','img (2).png','cv (2).png',12);
+INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`,`cv`,`wallet`) VALUES (3, 'Hank', 'Thiel', 'cloyd.predovic@example.org', 'facere', '7031 Princess Loop\nLake Susannaland, CA 20704-1547', 107963, 'voluptatem','img (3).png','cv (3).png',13);
+INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`,`cv`,`wallet`) VALUES (4, 'Buford', 'Steuber', 'tyreek.schiller@example.com', 'est', '1895 Krista Courts Suite 903\nSouth Clement, NV 62005', 72622, 'aperiam','img (4).png','cv (4).png',14);
+INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`,`cv`,`wallet`) VALUES (5, 'Evan', 'Hartmann', 'dena71@example.org', 'in', '90210 Georgiana Plain\nHuelsfort, TX 42532', 817086, 'aut','img (5).png','cv (5).png',15);
+INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`,`cv`,`wallet`) VALUES (6, 'Rosalinda', 'Jaskolski', 'qschulist@example.net', 'doloribus', '28844 Raven Groves Apt. 319\nSouth Trudieville, SC 65024-8426', 432708, 'dolores','img (6).png','cv (6).png',16);
+INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`,`cv`,`wallet`) VALUES (7, 'Dillan', 'Feeney', 'cmarquardt@example.com', 'beatae', '23678 Rohan Walks\nTillmantown, DC 81977-1483', 90, 'a','img (7).png','cv (7).png',17);
+INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`,`cv`,`wallet`) VALUES (8, 'Jaylan', 'Mueller', 'ykilback@example.com', 'quisquam', '616 Wehner Extensions\nAddiemouth, OR 27528', 0, 'a','img (8).png','cv (8).png',18);
+INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`,`cv`,`wallet`) VALUES (9, 'Amber', 'Hettinger', 'omarquardt@example.com', 'atque', '0887 Darrion Lane Suite 356\nPort Havenstad, CT 48138-7193', 1, 'veritatis','img (9).png','cv (9).png',19);
+INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `address`, `phoneNumber`, `field`,`picture`,`cv`,`wallet`) VALUES (10, 'Austin', 'Stanton', 'friesen.halie@example.net', 'incidunt', '211 Yessenia Ridge\nFeeneyville, CO 33253', 1, 'pariatur','img (10).png','cv (10).png',20);
 
 
 
@@ -155,8 +139,9 @@ INSERT INTO `jobposting` (`id`, `company_id`, `name`, `description`, `field`, `s
 INSERT INTO `jobposting` (`id`, `company_id`, `name`, `description`, `field`, `status`) VALUES (6, 6, 'vero', 'Exercitationem dolorem ea voluptas id molestiae in ipsam consequatur. Aliquam et sapiente esse consequatur et hic autem deserunt. Eius aut consequuntur velit adipisci itaque.', 'temporibus',  'pending');
 INSERT INTO `jobposting` (`id`, `company_id`, `name`, `description`, `field`, `status`) VALUES (7, 7, 'officia', 'Error voluptatem magnam deserunt aut nisi sint vero voluptatibus. Provident consequatur eius a porro. Eum in et eveniet velit dolor fuga iure. Asperiores iusto nostrum labore sed doloribus ducimus quia. Perferendis sit dolore consectetur provident te', 'repellat',  'pending');
 INSERT INTO `jobposting` (`id`, `company_id`, `name`, `description`, `field`, `status`) VALUES (8, 8, 'reiciendis', 'Nostrum tenetur temporibus quae dicta. Quidem itaque animi in officia veritatis sint. Rerum quia asperiores rerum qui ducimus laudantium id. Debitis qui officia quibusdam non optio laborum.', 'et', 'pending');
-INSERT INTO `jobposting` (`id`, `company_id`, `name`, `description`, `field`, `status`) VALUES (9, 9, 'odio', 'Tenetur fugit eius molestiae odit doloribus. Eos vel blanditiis nostrum praesentium esse in soluta. Voluptatem commodi illum atque et eum.', 'libero', 'quis');
+INSERT INTO `jobposting` (`id`, `company_id`, `name`, `description`, `field`, `status`) VALUES (9, 9, 'odio', 'Tenetur fugit eius molestiae odit doloribus. Eos vel blanditiis nostrum praesentium esse in soluta. Voluptatem commodi illum atque et eum.', 'libero', 'pending');
 INSERT INTO `jobposting` (`id`, `company_id`, `name`, `description`, `field`, `status`) VALUES (10, 10, 'alias', 'Dicta aperiam quis eum. Quo maiores praesentium nemo modi corrupti vitae nulla. Ab aspernatur et sequi eos fugit.', 'exercitationem', 'dolores');
+INSERT INTO `jobposting` (`id`, `company_id`, `name`, `description`, `field`, `status`) VALUES (11, 3, 'alcxzvcias', 'Diczvxcvcta aperiam quis eum. Quo maiores praesentium nemo modi corrupti vitae nulla. Ab aspernatur et sequi eos fugit.', 'exercitationem', 'pending');
 
 
 INSERT INTO `education` (`user_id`, `education`) VALUES (1, 'est');
@@ -247,5 +232,23 @@ INSERT INTO `skills` (`user_id`, `skill`) VALUES (9, 'quis');
 INSERT INTO `skills` (`user_id`, `skill`) VALUES (10, 'alias');
 
 
+insert into userfollowing (user_id,follower_id) VALUES (1,2);
+insert into userfollowing (user_id,follower_id) VALUES (1,3);
+insert into userfollowing (user_id,follower_id) VALUES (1,4);
+insert into userfollowing (user_id,follower_id) VALUES (1,5);
+insert into userfollowing (user_id,follower_id) VALUES (1,6);
+
+insert into userfollowing (user_id,follower_id) VALUES (2,7);
+insert into userfollowing (user_id,follower_id) VALUES (2,3);
+
+insert into userfollowing (user_id,follower_id) VALUES (3,4);
+insert into userfollowing (user_id,follower_id) VALUES (3,7);
+insert into userfollowing (user_id,follower_id) VALUES (3,9);
+insert into userfollowing (user_id,follower_id) VALUES (3,6);
 
 
+
+
+  ALTER TABLE jobposting AUTO_INCREMENT = 12;
+ALTER TABLE company AUTO_INCREMENT = 11;
+ALTER TABLE user AUTO_INCREMENT = 11;

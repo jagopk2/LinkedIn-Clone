@@ -20,9 +20,9 @@ class FollowComp extends Component {
     }
     clickHandler = (company_id) => {
         console.log(company_id);
-        let url = "http://localhost:3002/users/followcompany";
+        let url = "http://localhost:3002/users/followuser";
         axios.post(url, {
-            company_id,
+            follower_id :company_id,
             user_id
         }).then((response) => {
             // console.log(response.data);
@@ -48,18 +48,20 @@ class FollowComp extends Component {
         var final_template = [];
         // console.log('sdfds')
         this.state.companies_data.forEach((company) => {
+            console.log(company);
             var companypicture = `http://localhost:3002/download/${company.picture}`;
+            var id_link = `http://localhost:3000/uprofile/${company.id}`
             var id = company.id;
             final_template.push(
                 <div className="col-lg-3 col-md-4 col-sm-6">
                 <div className="company_profile_info">
                     <div className="company-up-info">
-                    <img src={companypicture} alt="Image" height={150} width={150} />
-                        <h3>{company.name}</h3>
+                        <img src={companypicture} alt="Image" height={150} width={150} />
+                        <h3>{company.firstname} {company.lastname}</h3>
                         <h4>{company.address}</h4>
                         <ul>
                             <li><a href="#" title className="follow" onClick={() => this.clickHandler(company.id)}> Follow </a> </li>
-                            <li><a href={company.website} title className="message-us"><i className="fa fa-envelope" /></a></li>
+                            <li><a href={id_link} title className="message-us"><i className="fa fa-envelope" /></a></li>
                         </ul>
                     </div>
                     {/* <a href="#" title className="view-more-pro">View Profile</a> */}
@@ -77,10 +79,12 @@ class FollowComp extends Component {
     }
 
     componentWillMount() {
-        let url = 'http://localhost:3002/users/companies'
-        axios.post(url)
+        let url = 'http://localhost:3002/users/getalluser'
+        axios.post(url,{
+            user_id 
+        })
             .then((response) => {
-                // console.log(response.data);
+                console.log(response.data);
                 this.setState({ companies_data: response.data });
                 // console.log(this.state.companies_data);
             })

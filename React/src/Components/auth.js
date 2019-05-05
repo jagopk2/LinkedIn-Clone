@@ -17,19 +17,10 @@ class Auth extends Component {
     
      isAuthenticated() {
         console.log(localStorage)
-          if (localStorage.length > 0) {
-            axios.post('http://localhost:3002/users/isauthenticated', {
-              sessionID: localStorage.getItem('sessionID')
-            }).then((response) => {
-              if (response.data.status === true) {
-                console.log(response.data.status)
-                console.log('authenticated')
-                return true;
-              } else {
-                console.log("not authenticated1")
-                return false
-              }
-            });
+          if (localStorage.length > 0 && localStorage.sessionID) {
+            console.log("authenticated")
+            return true;
+            
           } else {
             console.log("not authenticated2")
             return false

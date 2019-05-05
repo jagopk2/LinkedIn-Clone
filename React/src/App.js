@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect ,withRouter} from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -16,6 +16,7 @@ import CompanyTimeline from './Components/ctimeline';
 import ProtectedRoute from './Components/protectedroute';
 import UserProfile from './Components/userprofile';
 import Navbar2 from './Components/navbar2';
+import FollowUser from './Components/usersfollow'
 class App extends Component {
 
 
@@ -29,15 +30,17 @@ class App extends Component {
 
             {/* <Navbar /> */}
             <Route exact path="/" component={Home} />
-            {/* <ProtectedRoute exact path="/" component={Home} /> */}
+            <ProtectedRoute exact path="/timeline" component={Timeline} />
             <Route path="/login" component={Login} />
-            <Route path="/compRegister" component={UserRegister} />
+            <Route path="/userRegister" component={UserRegister} />
             <Route path="/jobPosting" component={JobPosting} />
             <Route path="/jobPostDetails/:id" component={JobPostDetails} />
-            <Route path="/timeline" component={Timeline} />
+            {/* <Route path="/timeline" component={Timeline} /> */}
             <Route path="/ctimeline" component={CompanyTimeline} />
             <Route path="/companies" component={FollowComp} />
-            <Route path="/uprofile" component={UserProfile} />
+            <Route path="/uprofile/:id" component={UserProfile} />
+            <Route path="/followusers" component={FollowUser} />
+            
           </div>
         </div>
       </BrowserRouter>

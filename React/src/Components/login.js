@@ -1,18 +1,27 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import { Redirect } from 'react-router-dom'
+import 'react-toastify/dist/ReactToastify.css';
 
+toast.configure({
+  autoClose: 5000, 
+  position: toast.POSITION.TOP_CENTER,
+  
+  //etc you get the idea
+});
 // const $ = window.$;
 class Login extends Component {
 
+
+
   // componentDidMount() {
   //   var element = ReactDOM.findDOMNode(this.refs.dropdown)
-  
+
   //   $(element).ready(function() {
   //     $('select').formSelect();
   //   });
   // }
-
 
   handleSubmit = (e) => {
     e.preventDefault()
@@ -21,46 +30,58 @@ class Login extends Component {
     console.log('handling submit')
 
     let url = 'http://localhost:3002/users/login'
-    axios.post(url,{
-      email:e.target.email.value,
-      password:e.target.password.value
+    axios.post(url, {
+      email: e.target.email.value,
+      password: e.target.password.value
     })
-    .then(function (response) {
-      console.log(response.data);
-      localStorage.setItem('user_id',response.data.user_id);
-      localStorage.setItem('sessionID',response.data.sessionID);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-    
+      .then(function (response) {
+        console.log(response.data.loginState);
+        if (response.data.loginState === "true") {
+          toast("Succesfully logged in", {
+          
+            onClose: () => {}
+          });
+          localStorage.setItem('user_id', response.data.user_id);
+          localStorage.setItem('sessionID', response.data.sessionID);
+        }else{
+          var errormsg = response.data.message[0];
+          console.log(errormsg) 
+          toast(errormsg, {
+          
+            onClose: () => {}
+          });
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
   }
 
   render() {
     return (
-      <div className="container">
-        <div className="row">
-          <form className="col s12" onSubmit={this.handleSubmit}>
-            <div className="row">
-              <div className="input-field col s12">
-                <label for="email">Email </label>
-                <input id="email" type="email" className="validate" />
-              </div>
-            </div>
-            <div className="row">
-              <div className="input-field col s12">
-                <label for="password">Password</label>
-                <input id="password" type="password" className="validate" />
-              </div>
-            </div>
-            <button className="btn waves-effect waves-light" type="submit" name="action">
-              Submit
-                        <i className="material-icons right">send</i>
-            </button>
-          </form>
-        </div>
+
+      <div className="container login-container junaid">
+        <form className="text-center border border-light p-5" onSubmit={this.handleSubmit}>
+          <p className="h4 mb-4">Sign in</p>
+          {/* Email */}
+          <input type="email" id="email" className="form-control mb-4" placeholder="E-mail" required />
+          {/* Password */}
+          <input type="password" id="password" className="form-control mb-4" placeholder="Password" required />
+
+          {/* Sign in button */}
+          <button className="btn btn-danger btn-block my-4" type="submit">Sign in</button>
+          {/* Register */}
+          <a href="forgerPassword">Forgot password?</a>
+          <p>Not a member? <br />
+            <a href="/userRegister">Register</a>
+          </p>
+
+
+        </form>
       </div>
     );
   }
 }
+
 export default Login;

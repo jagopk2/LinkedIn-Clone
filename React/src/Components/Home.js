@@ -7,9 +7,11 @@ class Home extends Component {
       <div className= "container">  
 
         <Link to="/login">Login</Link> 
-        <Link to="/compRegister">Register Company</Link>
+        <Link to="/userRegister">Register Company</Link>
         <Link to="/timeline">Timeline</Link>
         <Link to="/companies">Companies</Link>
+        <Link to="/uprofile">UserProfile</Link>
+        <Link to="/followusers">Follow User</Link>
       </div>
     );
   }
