@@ -58,7 +58,7 @@ class FollowComp extends Component {
                         <h3>{company.name}</h3>
                         <h4>{company.address}</h4>
                         <ul>
-                            <li><a href="#" title className="follow" onClick={() => this.clickHandler(company.id)}> Follow </a> </li>
+                            <li><a href="/user/companies#" title className="follow" onClick={() => this.clickHandler(company.id)}> Follow </a> </li>
                             <li><a href={company.website} title className="message-us"><i className="fa fa-envelope" /></a></li>
                         </ul>
                     </div>

@@ -17,8 +17,6 @@ import FollowerUserProfile from './Components/FollowerUserProfile'
 import Login from './Components/login';
 import UserRegister from './Components/userRegister';
 import Home from './Components/Home';
-import Navbar from './Components/Navbar';
-import JobPostDetails from './Components/jobPostDetails';
 import Timeline from './Components/timeline'
 import FollowComp from './Components/followcomp'
 // import FollowComp from './Components/followcomp'
@@ -28,6 +26,7 @@ import UserProfile from './Components/userprofile';
 import Navbar2 from './Components/navbar2';
 import FollowUser from './Components/usersfollow'
 import AccountSetting from './Components/accountsetting';
+import ForgetPassword from './Components/forgetpassword'
 //
 
 import Clogin from './Components/clogin'
@@ -47,6 +46,7 @@ class App extends Component {
             <ProtectedRoute exact path="/home" component={Home} />
             <Route path="/user/login" component={Login} />
             <Route path="/user/userRegister" component={UserRegister} />
+            <Route path="/user/forgetPassword" component={ForgetPassword} />
             <ProtectedRoute exact path="/user/" component={Timeline} />
             <ProtectedRoute path="/user/ctimeline" component={CompanyTimeline} />
             <ProtectedRoute path="/user/companies" component={FollowComp} />

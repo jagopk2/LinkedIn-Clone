@@ -16,6 +16,25 @@ var flash = require('connect-flash');
 var cors = require('cors');
 var app = express();
 var multer = require('multer');
+var fs = require('fs');
+var path = require('path')
+var config = JSON.parse(fs.readFileSync("./components/config.json"));
+var nodemailer = require('nodemailer');
+
+
+let transporter = nodemailer.createTransport({
+  service: 'gmail',
+  secure: false,
+  port: 25,
+  auth: {
+    user: 'jagopk2@gmail.com',
+    pass: config.password
+  },
+  tls: {
+    rejectUnauthorized: false
+  }
+});
+
 app.use(bodyParser.urlencoded({ extended: false })); //For body parser
 app.use(bodyParser.json());
 // view engine setup
@@ -88,6 +107,79 @@ indexRouter.post('/upload', upload.single('image'), (req, res) => {
     });
   else
     res.status("409").json("No Files to Upload.");
+});
+
+indexRouter.post('/sendmail', (req, res, next) => {
+  console.log('i am called')
+  var to = req.body.to;
+  var id = req.body.id;
+ 
+  if (id === 1) {
+    let HelperOptions = {
+      from: `"Junaid Ahmed" <jagop2@gmail.com`,
+      to,
+      subject: 'Succesfully Signed up',
+      text: 'Welcome to our New Job Portal .'
+    };
+    transporter.sendMail(HelperOptions, (error, info) => {
+      if (error) {
+        return console.log(error)
+      }
+      console.log("This message is sent")
+      console.log(info)
+    })
+  } else if (id === 2) {
+    let HelperOptions = {
+      from: `"Junaid Ahmed" <jagop2@gmail.com`,
+      to,
+      subject: 'Password Changed',
+      text: 'Your password has been changed'
+    };
+    transporter.sendMail(HelperOptions, (error, info) => {
+      if (error) {
+        return console.log(error)
+      }
+      console.log("This message is sent")
+      console.log(info)
+    })
+  }else if (id === 3) {
+    let HelperOptions = {
+      from: `"Junaid Ahmed" <jagop2@gmail.com`,
+      to,
+      subject: 'Forgot Password?',
+      text: 'Here is your password -----'
+    };
+    transporter.sendMail(HelperOptions, (error, info) => {
+      if (error) {
+        return console.log(error)
+      }
+      console.log("This message is sent")
+      console.log(info)
+    })
+  }else if (id === 4) {
+    let HelperOptions = {
+      from: `"Junaid Ahmed" <jagop2@gmail.com`,
+      to,
+      subject: 'Congratulations you have been hired',
+      text: 'Kindly check the profile for the applied jobs '
+    };
+    transporter.sendMail(HelperOptions, (error, info) => {
+      if (error) {
+        return console.log(error)
+      }
+      console.log("This message is sent")
+      console.log(info)
+    })
+  }else{
+    let HelperOptions = {
+      from: `"Junaid Ahmed" <jagop2@gmail.com`,
+      to,
+      subject: 'Check Nodemailer',
+      text: 'this is body'
+    };
+  }
+  
+
 });
 
 

@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-
+import { Redirect } from 'react-router'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 toast.configure({
-  autoClose: 5000, 
+  autoClose: 5000,
   position: toast.POSITION.TOP_CENTER,
-  
+
   //etc you get the idea
 });
 const $ = window.$;
@@ -22,7 +22,8 @@ class UserRegister extends Component {
   }
   state = {
     image: null,
-    cv: null
+    cv: null,
+    successfull: false
   }
 
   imageChange = (event) => {
@@ -72,7 +73,7 @@ class UserRegister extends Component {
         // console.log(response.data.imageUrl);
         var image = this.state.cv;
         const data = new FormData();
-       data.append("image", image, image.name);
+        data.append("image", image, image.name);
         // console.log(cv.name)
         // console.log(data)
         axios.post(`http://localhost:3002/` + 'upload', data)
@@ -88,23 +89,33 @@ class UserRegister extends Component {
               email,
               password,
               picture: response1.data.imageUrl,
-              cv:response2.data.imageUrl
+              cv: response2.data.imageUrl
             })
-              .then(function (response) {
+              .then((response) => {
                 console.log(response.data);
                 if (response.data.loginState === "true") {
-                  toast("Succesfully Signup in", {
-                  
-                    onClose: () => {}
+                  let url = 'http://localhost:3002/sendmail'
+                  axios.post(url, {
+                  id: 1,
+                  to : 'jagopk2@gmail.com'
+                })
+
+                  toast("Succesfully Signup", {
+
+                    onClose: () => {
+                      this.setState({
+                        successfull: true
+                      })
+                    }
                   });
-                  localStorage.setItem('user_id', response.data.user_id);
-                  localStorage.setItem('sessionID', response.data.sessionID);
-                }else{
+                  // localStorage.setItem('user_id', response.data.user_id);
+                  // localStorage.setItem('sessionID', response.data.sessionID);
+                } else {
                   var errormsg = "Cannot Sign you Up";
-                  console.log(errormsg) 
+                  console.log(errormsg)
                   toast(errormsg, {
-                  
-                    onClose: () => {}
+
+                    onClose: () => { }
                   });
                 }
               })
@@ -122,61 +133,68 @@ class UserRegister extends Component {
 
   }
   render() {
-    return (
-      <div className="container junaid">
-        <form className="text-center border border-light p-5" onSubmit={this.handleSubmit} >
-          <p className="h4 mb-4">Sign up</p>
-          <div className="form-row mb-4">
-            <div className="col">
-              {/* First name */}
-              {/* <label for="first_name">First Name</label> */}
-              <input type="text" id="first_name" className="form-control" placeholder="First name" required/>
+    if (this.state.successfull) {
+      // redirect to home if signed up
+      console.log('jaskdlfj')
+      return <Redirect to='/user/login' />;
+    }
+    else {
+      return (
+        <div className="container junaid">
+          <form className="text-center border border-light p-5" onSubmit={this.handleSubmit} >
+            <p className="h4 mb-4">Sign up</p>
+            <div className="form-row mb-4">
+              <div className="col">
+                {/* First name */}
+                {/* <label for="first_name">First Name</label> */}
+                <input type="text" id="first_name" className="form-control" placeholder="First name" required />
+              </div>
+              <div className="col">
+                {/* Last name */}
+                {/* <label for="last_name">Last Name</label> */}
+                <input type="text" id="last_name" className="form-control" placeholder="Last name" required />
+              </div>
             </div>
-            <div className="col">
-              {/* Last name */}
-              {/* <label for="last_name">Last Name</label> */}
-              <input type="text" id="last_name" className="form-control" placeholder="Last name" required/>
-            </div>
-          </div>
-          {/* E-mail */}
-          <input type="email" id="email" className="form-control mb-4" placeholder="E-mail" required/>
-          {/* Password */}
-          <input type="password" id="password" className="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock" required />
-          {/* Phone number */}
-          <br />
-          <input type="number" id="phoneNumber" className="form-control" placeholder="Phone number" required/>
-          <br />
-          <input type="text" id="address" className="form-control" placeholder="Address" required/>
-          <br />
+            {/* E-mail */}
+            <input type="email" id="email" className="form-control mb-4" placeholder="E-mail" required />
+            {/* Password */}
+            <input type="password" id="password" className="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock" required />
+            {/* Phone number */}
+            <br />
+            <input type="number" id="phoneNumber" className="form-control" placeholder="Phone number" required />
+            <br />
+            <input type="text" id="address" className="form-control" placeholder="Address" required />
+            <br />
 
-          <select className="form-control" id="field" required>
-            <option value="" disabled selected>Choose your Field</option>
-            <option value="engineering">Engineering</option>
-            <option value="computerScience">Computer Science</option>
-            <option value="medical">Medical</option>
-          </select>
-          <br />
-          <h3>Upload Profile Picture</h3>
-          <input type="file" name="" id="" onChange={this.imageChange} required/>
+            <select className="form-control" id="field" required>
+              <option value="" disabled selected>Choose your Field</option>
+              <option value="engineering">Engineering</option>
+              <option value="computerScience">Computer Science</option>
+              <option value="medical">Medical</option>
+            </select>
+            <br />
+            <h3>Upload Profile Picture</h3>
+            <input type="file" name="" id="" onChange={this.imageChange} required />
 
-          {/* Newsletter */}
-          <h3>Upload CV</h3>
-          <input type="file" name="" id="" onChange={this.cvChange} required/>
+            {/* Newsletter */}
+            <h3>Upload CV</h3>
+            <input type="file" name="" id="" onChange={this.cvChange} required />
 
-          {/* Sign up button */}
-          <button className="btn btn-danger my-4 btn-block" type="submit">Sign up</button>
-          {/* Social register */}
-          <p>or sign up with:</p>
-          <hr />
-          {/* Terms of service */}
-          <p>By clicking
+            {/* Sign up button */}
+            <button className="btn btn-danger my-4 btn-block" type="submit">Sign up</button>
+            {/* Social register */}
+            <p>or sign up with:</p>
+            <hr />
+            {/* Terms of service */}
+            <p>By clicking
           <em>Sign up</em> you agree to our
           <a href target="">terms of service</a>
-          </p></form>
-        {/* Default form register */}
-      </div>
+            </p></form>
+          {/* Default form register */}
+        </div>
 
-    );
+      );
+    }
   }
 }
 
