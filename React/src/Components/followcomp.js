@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const $ = window.$;
 // const $ = window.$;
-var user_id = 3;
+var user_id = localStorage.getItem('user_id');
 // var final_template = ['<div>Loading</div>'];
 class FollowComp extends Component {
     componentDidMount() {

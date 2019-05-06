@@ -213,10 +213,12 @@ router.post('/apply', (req, res, next) => {
 
   var user_id = req.body.user_id;
   var job_id = req.body.job_id;
+  var refrential = req.body.refrential;
+
   console.log(job_id);
   console.log(user_id);
   // connection.query(`SELECT 'Hello world' FROM DUAL;`, function (error, results, fields) {
-  connection.query(`insert into jobapplication (user_id,job_id) Values (${user_id},${job_id});`, function (error, results, fields) {
+  connection.query(`insert into jobapplication (user_id,job_id,reference) Values (${user_id},${job_id},${refrential});`, function (error, results, fields) {
     if (error) {
       console.log('Error Inserting job application \n' + error);
       res.json({ status: 'UnSuccesful', error: error });
@@ -301,5 +303,20 @@ router.post('/uappliedjobs', (req, res, next) => {
       }
   });
 });
+router.post('/changepassword', (req, res, next) => {
+  
+  var user_id = req.body.user_id;
+  var password = req.body.password;
+  console.log(user_id);
+  console.log(password);
+  connection.query(`update user set password = '${password}' where id=${user_id};`, function (error, results, fields) {
+    if (error) {
+      console.log('Error Updating the password\n' + error);
+     res.json('false');
+    } else
+       res.json('true'); 
+  });
+});
+
 
 module.exports = router;

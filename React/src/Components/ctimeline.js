@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 const $ = window.$;
 // const $ = window.$;
-var user_id = 3;
+var user_id = localStorage.getItem('user_id');
 var final_template = [];
 class Timeline extends Component {
     componentDidMount() {
@@ -14,19 +14,27 @@ class Timeline extends Component {
         timeline_data: [],
         companies_data: []
     }
-    applicationHandler = (job_id) => {
+    applicationHandler = (e) => {
+        e.preventDefault()
+        console.log(e.target.job_id.value)
+        console.log(e.target.refrential.value)
+        var job_id = e.target.job_id.value;
+        var refrential = e.target.refrential.value ? e.target.refrential.value: 0;
         let url = 'http://localhost:3002/users/apply'
         axios.post(url, {
             job_id,
-            user_id
+            user_id,
+            refrential
         })
             .then((response) => {
-                console.log(response.data)
+                
                 if (response.data.status == 'Succesful') {
+                    
                     this.setState({
                         timeline_data: this.state.timeline_data.filter((job) => {
                             return job.job_id != job_id;
                         })
+                        
                     });
                 } else {
                     console.log('cannot proccess apply on backend');
@@ -84,8 +92,13 @@ class Timeline extends Component {
                                         </ul>
                                     </div>
                                     <div className="epi-sec">
-                                        
-                                        <button className="btn btn-danger center" onClick={()=>{this.applicationHandler(job.job_id)}}>apply</button>
+                                        <form onSubmit={this.applicationHandler}>
+                                            <span><strong>Enter Reference Code =></strong> </span>
+                                            {/* <h5>Enter Reference Code if any ??</h5> */}
+                                            <input type="text" name="refrential" id ="refrential" style={{marginRight: '20px'}} /> 
+                                            <input type="text" name="job_id" id ="job_id" value={job.job_id} type="hidden" /> 
+                                        <button className="btn btn-danger center" type="submit">apply</button>
+                                        </form>   
                                     </div>
 
                                 </div>

@@ -72,6 +72,7 @@ CREATE
     user_id      INTEGER ,
     job_id       INTEGER ,
     status       VARCHAR (250) DEFAULT 'pending',
+    reference       VARCHAR (250) DEFAULT '0',
     Foreign key (user_id) references user(id),
     Foreign key (job_id) references jobposting(id)
   ) ;

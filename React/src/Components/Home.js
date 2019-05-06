@@ -12,6 +12,7 @@ class Home extends Component {
         <Link to="/companies">Companies</Link>
         <Link to="/uprofile">UserProfile</Link>
         <Link to="/followusers">Follow User</Link>
+        <Link to="/accountsettings">Account Settings</Link>
       </div>
     );
   }

@@ -17,6 +17,8 @@ import ProtectedRoute from './Components/protectedroute';
 import UserProfile from './Components/userprofile';
 import Navbar2 from './Components/navbar2';
 import FollowUser from './Components/usersfollow'
+import AccountSetting from './Components/accountsetting';
+
 class App extends Component {
 
 
@@ -29,18 +31,25 @@ class App extends Component {
           <div className="wrapper">
 
             {/* <Navbar /> */}
-            <Route exact path="/" component={Home} />
-            <ProtectedRoute exact path="/timeline" component={Timeline} />
+            <ProtectedRoute exact path="/home" component={Home} />
             <Route path="/login" component={Login} />
             <Route path="/userRegister" component={UserRegister} />
-            <Route path="/jobPosting" component={JobPosting} />
+            <ProtectedRoute exact path="/" component={Timeline} />
+            <ProtectedRoute path="/jobPosting" component={JobPosting} />
+            <ProtectedRoute path="/jobPostDetails/:id" component={JobPostDetails} />
+            <ProtectedRoute path="/ctimeline" component={CompanyTimeline} />
+            <ProtectedRoute path="/companies" component={FollowComp} />
+            <ProtectedRoute path="/uprofile/:id" component={UserProfile} />
+            <ProtectedRoute path="/followusers" component={FollowUser} />
+            <ProtectedRoute path="/accountsettings" component={AccountSetting} />
+            
+            {/* <Route path="/jobPosting" component={JobPosting} />
             <Route path="/jobPostDetails/:id" component={JobPostDetails} />
-            {/* <Route path="/timeline" component={Timeline} /> */}
             <Route path="/ctimeline" component={CompanyTimeline} />
             <Route path="/companies" component={FollowComp} />
             <Route path="/uprofile/:id" component={UserProfile} />
             <Route path="/followusers" component={FollowUser} />
-            
+             */}
           </div>
         </div>
       </BrowserRouter>

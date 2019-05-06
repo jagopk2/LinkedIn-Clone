@@ -3,7 +3,7 @@ import axios from 'axios'
 import ReactDOM from 'react-dom';
 // import ScrollableAnchor from 'react-scrollable-anchor'
 import ScrollIntoView from 'react-scroll-into-view'
-var user_id = 3;
+var user_id = localStorage.getItem('user_id');
 var final_template = [];
 export class UserProfile extends Component {
     componentDidMount() {
