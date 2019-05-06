@@ -26,7 +26,7 @@ toast.configure({
                 });
           return (
             <Redirect
-              to="/login"
+              to="/user/login"
             />
           );
         }

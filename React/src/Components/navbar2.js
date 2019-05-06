@@ -67,27 +67,27 @@ class Navbar extends Component {
                   <nav>
                     <ul>
                       <li>
-                        <a href="/" title>
+                        <a href="/user/" title>
                           <span><img src="images/icon1.png" alt /></span>
                           Home
                         </a>
                       </li>
                       <li>
-                        <a href="/companies" title>
+                        <a href="/user/companies" title>
                           <span><img src="images/icon2.png" alt /></span>
                           Companies
                         </a>
                       </li>
 
                       <li>
-                        <a href="/followusers" title>
+                        <a href="/user/followusers" title>
                           <span><img src="images/icon4.png" alt /></span>
                           Profiles
                         </a>
 
                       </li>
                       <li>
-                        <a href="/ctimeline" title>
+                        <a href="/user/ctimeline" title>
                           <span><img src="images/icon5.png" alt /></span>
                           Jobs
                         </a>
@@ -107,13 +107,13 @@ class Navbar extends Component {
                     <div className="user-account-settingss">
                       <h3>Setting</h3>
                       <ul className="us-links">
-                        <li><a href={"/uprofile/" + user_id} title>Profile</a></li>
+                        <li><a href={"/user/uprofile/" + user_id} title>Profile</a></li>
                         <li><a href="profile-account-setting.html" title>Account Setting</a></li>
                         <li><a href="#" title>Privacy</a></li>
                         <li><a href="#" title>Faqs</a></li>
                         <li><a href="#" title>Terms &amp; Conditions</a></li>
                       </ul>
-                      <h3 className="tc"><a href="/login" title onClick={this.logout}>Logout</a></h3>
+                      <h3 className="tc"><a href="/user/login" title onClick={this.logout}>Logout</a></h3>
                     </div>{/*user-account-settingss end*/}
                   </div>
                 </div>{/*header-data end*/}
@@ -145,16 +145,31 @@ class Navbar extends Component {
                   <nav>
                     <ul>
                       <li>
-                        <a href="/login" title>
+                        <a href="/user/login" title>
                           <span><img src="images/icon1.png" alt /></span>
-                          Login
+                          User Login
                         </a>
                       </li>
+                      
                       <li>
-                        <a href="/userRegister" title>
+                      <a href="/company/compLogin" title>
+                          <span><img src="images/icon1.png" alt /></span>
+                          Company Login
+                        </a> 
+                      </li>
+                      <li>
+                        <a href="/user/userRegister" title>
                           <span><img src="images/icon2.png" alt /></span>
-                          Register
+                          User Register
                         </a>
+                        
+                      </li>
+                      <li>
+                        <a href="/company/compRegister" title>
+                          <span><img src="images/icon2.png" alt /></span>
+                          Company Register
+                        </a>
+                        
                       </li>
 
                       

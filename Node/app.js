@@ -11,6 +11,7 @@ var connection = require('./connection/sql');
 var MySQLStore = require('express-mysql-session')(session);
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var companyRouter = require('./routes/company');
 var flash = require('connect-flash');
 var cors = require('cors');
 var app = express();
@@ -51,6 +52,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/company', companyRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

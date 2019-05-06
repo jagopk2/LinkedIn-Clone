@@ -3,16 +3,18 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Redirect } from 'react-router'
-toast.configure({
-  autoClose: 5000,
-  position: toast.POSITION.TOP_CENTER,
 
+toast.configure({
+  autoClose: 5000, 
+  position: toast.POSITION.TOP_CENTER,
+  
   //etc you get the idea
 });
 // const $ = window.$;
 class Login extends Component {
 
   state = {
+    email: '',
     successfull: false
   }
 
@@ -23,37 +25,45 @@ class Login extends Component {
   //     $('select').formSelect();
   //   });
   // }
+  state_changer = ()=>{
+    this.setState({
+      successfull :true
+    })
+  }
 
   handleSubmit = (e) => {
     e.preventDefault()
+    var email = e.target.email.value;
     console.log(e.target.email.value)
     console.log(e.target.password.value)
     console.log('handling submit')
 
-    let url = 'http://localhost:3002/users/login'
+    let url = 'http://localhost:3002/company/login'
     axios.post(url, {
       email: e.target.email.value,
       password: e.target.password.value
     })
-      .then((response) => {
+      .then( (response) => {
         console.log(response.data.loginState);
         if (response.data.loginState === "true") {
+          localStorage.setItem('user', email);
           toast("Succesfully logged in", {
-
+          
             onClose: () => {
               this.setState({
-                successfull: true
+                successfull :true
               })
             }
           });
-          localStorage.setItem('user_id', response.data.user_id);
-          localStorage.setItem('sessionID', response.data.sessionID);
-        } else {
-          var errormsg = response.data.message[0];
-          console.log(errormsg)
+         
+          // localStorage.setItem('user_id', response.data.user_id);
+          // localStorage.setItem('sessionID', response.data.sessionID);
+        }else{
+          var errormsg = response.data.message;
+          console.log(errormsg) 
           toast(errormsg, {
-
-            onClose: () => { }
+          
+            onClose: () => {}
           });
         }
       })
@@ -67,8 +77,8 @@ class Login extends Component {
     if (this.state.successfull) {
       // redirect to home if signed up
       console.log('jaskdlfj')
-      return <Redirect to='/user/' />;
-    }
+      return <Redirect to = '/company/viewProfile' />;
+  }
     return (
 
       <div className="container login-container junaid">
@@ -81,7 +91,7 @@ class Login extends Component {
 
           {/* Sign in button */}
           <button className="btn btn-danger btn-block my-4" type="submit">Sign in</button>
-
+         
           {/* Register */}
           <a href="forgerPassword">Forgot password?</a>
           <p>Not a member? <br />

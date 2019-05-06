@@ -220,7 +220,7 @@ export class UserProfile extends Component {
                                                             </li>
                                                             <li data-tab="show_jobs">
                                                                 <ScrollIntoView selector="#show_jobs">
-                                                                    <a href={"/uprofile/" + user_id} title>
+                                                                    <a href={"/user/uprofile/" + user_id} title>
                                                                         <img src="images/ic4.png" alt />
                                                                         <span>Applied Jobs</span>
                                                                     </a>
