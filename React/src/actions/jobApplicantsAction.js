@@ -23,7 +23,7 @@ export function fetchJobApplicants(job_id) {
     console.log('job_id_infetch',job_id)
     return dispatch => {
       dispatch(viewProfileBegin());
-      return axios.post("http://localhost:3001/company/fetchJobApplicants",{
+      return axios.post("http://localhost:3002/company/fetchJobApplicants",{
           data: job_id
       })
         .then(res => res.data)

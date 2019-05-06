@@ -33,7 +33,7 @@ class FollowerUserProfile extends Component {
         
         if(this.state.location)
         {
-            return <Redirect to = '/followers' />;
+            return <Redirect to = '/company/followers' />;
         }
 
         console.log('state', this.state)

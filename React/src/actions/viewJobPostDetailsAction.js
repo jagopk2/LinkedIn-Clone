@@ -23,7 +23,7 @@ export function viewJobPostDetails(job_id) {
     console.log('job_id',job_id)
     return dispatch => {
       dispatch(viewProfileBegin());
-      return axios.post("http://localhost:3001/company/viewJobPostDetails",{
+      return axios.post("http://localhost:3002/company/viewJobPostDetails",{
           data: job_id
       })
         .then(res => 

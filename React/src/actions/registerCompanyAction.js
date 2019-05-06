@@ -23,7 +23,7 @@ export function registerCompany(company_data) {
     console.log('user_id_infetch',company_data)
     return dispatch => {
       dispatch(viewProfileBegin());
-      return axios.post("http://localhost:3001/company/registerCompany",{
+      return axios.post("http://localhost:3002/company/registerCompany",{
           data: company_data
       })
         .then(res => res.data)
