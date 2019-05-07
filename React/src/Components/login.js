@@ -83,9 +83,9 @@ class Login extends Component {
           <button className="btn btn-danger btn-block my-4" type="submit">Sign in</button>
 
           {/* Register */}
-          <a href="forgerPassword">Forgot password?</a>
+          <a href="/user/forgetPassword">Forgot password?</a>
           <p>Not a member? <br />
-            <a href="/userRegister">Register</a>
+            <a href="/user/userRegister">Register</a>
           </p>
 
 

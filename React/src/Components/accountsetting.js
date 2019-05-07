@@ -36,6 +36,11 @@ user_id = localStorage.getItem('user_id');
     })
       .then(function (response) {
         if (response.data === "true") {
+            let url = 'http://localhost:3002/sendmail'
+            axios.post(url, {
+            id: 2,
+            to : 'jagopk2@gmail.com'
+          })
           toast("Succesfully Changed Password");
         }else{
           toast("Error in changing the Password");
@@ -61,7 +66,6 @@ user_id = localStorage.getItem('user_id');
                                         <div className="nav nav-tabs" id="nav-tab" role="tablist">
                                             <a className="nav-item nav-link active" id="nav-status-tab" data-toggle="tab" href="#nav-status" role="tab" aria-controls="nav-status" aria-selected="false"><i className="fa fa-line-chart" />Status</a>
                                             <a className="nav-item nav-link" id="nav-password-tab" data-toggle="tab" href="#nav-password" role="tab" aria-controls="nav-password" aria-selected="false"><i className="fa fa-lock" />Change Password</a>
-                                            <a className="nav-item nav-link" id="nav-notification-tab" data-toggle="tab" href="#nav-notification" role="tab" aria-controls="nav-notification" aria-selected="false"><i className="fa fa-flash" />Notifications</a>
                                         </div>
                                     </div>{/*acc-leftbar end*/}
                                 </div>

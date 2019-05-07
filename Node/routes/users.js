@@ -3,6 +3,8 @@ var router = express.Router();
 var connection = require('../connection/sql');
 var passport = require('../config/passport');
 var app = require('../app');
+
+
 /* GET users listing. */
 
 var user_id = 3;
@@ -17,7 +19,7 @@ router.get('/login', function (req, res, next) {
   console.log(app.name);
   console.log("Errors" + req.flash('loginMessage'));
   console.log("Passport Errors" + req.flash('error'));
-      // res.json({ status: 'Succesful' });
+  // res.json({ status: 'Succesful' });
   res.render('login.hbs');
 });
 
@@ -88,15 +90,15 @@ router.post('/isauthenticated', (req, res, next) => {
 
 });
 router.post('/timeline', (req, res, next) => {
-
+  var user_id = req.body.user_id;
   connection.query(`select j.id as job_id,j.company_id ,j.name as job_name,j.field,j.status,c.name as company_name ,c.picture ,c.website,j.description from jobposting j,company c where c.id = j.company_id and j.status = 'pending' and j.id not in (select job_id from jobapplication where user_id=${user_id});`, function (error, results, fields) {
     if (error) {
       console.log('cannot Load the timeline\n' + error);
 
-    } else{
+    } else {
       console.log(results[0])
       var final = {
-        timeline_result : results
+        timeline_result: results
       }
       res.json(final);
 
@@ -125,7 +127,7 @@ router.post('/companies', (req, res, next) => {
 
 router.post('/getcompany', (req, res, next) => {
   var company_id = req.body.company_id;
- console.log(company_id)
+  console.log(company_id)
   connection.query(`select * from company where id = ${company_id}`, function (error, results, fields) {
     if (error) {
       console.log('cannot Find any Company\n' + error);
@@ -141,7 +143,7 @@ router.post('/getcompany', (req, res, next) => {
 });
 router.post('/getuser', (req, res, next) => {
   var user_id = req.body.user_id;
- console.log(user_id)
+  console.log(user_id)
   connection.query(`select * from user where id = ${user_id}`, function (error, results, fields) {
     if (error) {
       console.log('cannot Find any Users\n' + error);
@@ -155,9 +157,29 @@ router.post('/getuser', (req, res, next) => {
 
   });
 });
+router.post('/getuserbymail', (req, res, next) => {
+  var user_id = req.body.email;
+  console.log(user_id)
+  connection.query(`select * from user where email = '${user_id}'`, function (error, results, fields) {
+    if (error) {
+      res.send({ loginState: 'false'})
+      // console.log('cannot Find any Users\n' + error);
+
+    } else
+      if (results.length > 0) {
+        res.send({ loginState: 'true'})
+      }else{
+      res.send({ loginState: 'false'})
+        
+      }
+    // res.json({ status: 'Succesful' });
+
+
+  });
+});
 router.post('/getalluser', (req, res, next) => {
   var user_id = req.body.user_id;
- console.log(user_id)
+  console.log(user_id)
   connection.query(`select * from user where id not in (select follower_id from userfollowing where user_id = ${user_id}) and id !=${user_id} ;`, function (error, results, fields) {
     if (error) {
       console.log('cannot Find any Users\n' + error);
@@ -174,8 +196,8 @@ router.post('/getalluser', (req, res, next) => {
 
 router.post('/getskills', (req, res, next) => {
   var job_id = req.body.job_id;
-  job_id =3;
- console.log(job_id);
+  job_id = 3;
+  console.log(job_id);
   connection.query(`select DISTINCT(skill) from jobposting j, jobskills s where s.job_id =j.id and j.id =${job_id}`, function (error, results, fields) {
     if (error) {
       console.log('cannot Find any Users\n' + error);
@@ -200,9 +222,9 @@ router.post('/ctimeline', (req, res, next) => {
       if (results.length > 0) {
         console.log(results);
         res.json(results);
-      }else{
+      } else {
         console.log('sdf')
-        res.json([{'company_name':'notfound'}]);
+        res.json([{ 'company_name': 'notfound' }]);
       }
     // res.json({ status: 'Succesful' });
 
@@ -252,21 +274,21 @@ router.post('/followuser', (req, res, next) => {
   var follower_id = req.body.follower_id;
   console.log(follower_id);
   console.log(user_id);
-  if(user_id !== follower_id){
+  if (user_id !== follower_id) {
 
-  // connection.query(`SELECT 'Hello world' FROM DUAL;`, function (error, results, fields) {
-  connection.query(`insert into userfollowing (user_id,follower_id) Values (${user_id},${follower_id});`, function (error, results, fields) {
-    if (error) {
-      console.log('Error Inserting into User Following Table\n' + error);
-      res.json({ status: 'UnSuccesful', error: error });
+    // connection.query(`SELECT 'Hello world' FROM DUAL;`, function (error, results, fields) {
+    connection.query(`insert into userfollowing (user_id,follower_id) Values (${user_id},${follower_id});`, function (error, results, fields) {
+      if (error) {
+        console.log('Error Inserting into User Following Table\n' + error);
+        res.json({ status: 'UnSuccesful', error: error });
 
-    } else
-      res.json({ status: 'Succesful' });
-  });
-}else{
-  res.json({ status: 'UnSuccesful', error: 'user and follower id is same' });
+      } else
+        res.json({ status: 'Succesful' });
+    });
+  } else {
+    res.json({ status: 'UnSuccesful', error: 'user and follower id is same' });
 
-}
+  }
 
 });
 
@@ -291,6 +313,7 @@ router.post('/uappliedjobs', (req, res, next) => {
   var user_id = req.body.user_id;
   console.log(user_id);
   connection.query(`select j.id as job_id,j.company_id ,j.name as job_name,j.field,j.status,c.name as company_name ,c.picture ,c.website,j.description from jobposting j,company c where c.id = j.company_id  and j.id in (select job_id from jobapplication where user_id=${user_id});`, function (error, results, fields) {
+    console.log(`select j.id as job_id,j.company_id ,j.name as job_name,j.field,j.status,c.name as company_name ,c.picture ,c.website,j.description from jobposting j,company c where c.id = j.company_id  and j.id in (select job_id from jobapplication where user_id=${user_id});`)
     if (error) {
       console.log('Error Getting user Applied Jobs Data\n' + error);
 
@@ -298,13 +321,13 @@ router.post('/uappliedjobs', (req, res, next) => {
       if (results.length > 0) {
         console.log(results);
         res.json(results);
-      }else{
+      } else {
         res.json(['company_name:notfound']);
       }
   });
 });
 router.post('/changepassword', (req, res, next) => {
-  
+
   var user_id = req.body.user_id;
   var password = req.body.password;
   console.log(user_id);
@@ -312,11 +335,10 @@ router.post('/changepassword', (req, res, next) => {
   connection.query(`update user set password = '${password}' where id=${user_id};`, function (error, results, fields) {
     if (error) {
       console.log('Error Updating the password\n' + error);
-     res.json('false');
+      res.json('false');
     } else
-       res.json('true'); 
+      res.json('true');
   });
 });
-
 
 module.exports = router;

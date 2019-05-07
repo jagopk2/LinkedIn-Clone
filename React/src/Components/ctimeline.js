@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const $ = window.$;
 // const $ = window.$;
 var user_id = localStorage.getItem('user_id');
@@ -29,7 +31,12 @@ class Timeline extends Component {
             .then((response) => {
                 
                 if (response.data.status == 'Succesful') {
-                    
+                    toast("Succesfully Applied", {
+
+                        onClose: () => {
+                          
+                        }
+                      });
                     this.setState({
                         timeline_data: this.state.timeline_data.filter((job) => {
                             return job.job_id != job_id;
