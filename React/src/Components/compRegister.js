@@ -33,28 +33,23 @@ class compRegister extends Component {
               <h3>{this.props.status ? this.props.status.code : ''}</h3>
           </div>
           <p className="h4 mb-4">Sign up</p>
-          <div className="form-row mb-4">
-            <div className="col">
-              {/* name */}
-              {/* <label for="first_name">First Name</label> */}
-              <input id="name" name="name" type="text" className="validate" onChange={this.handleOnChange} required/>
-            </div>
-            <div className="col">
+
+          <input id="name" name="name" type="text" className="form-control" placeholder="Company Name" onChange={this.handleOnChange} required/>
+          <br />
               {/* email */}
-              {/* <label for="last_name">Last Name</label> */}
-              <input id="email" type="email" name="email" className="validate" onChange={this.handleOnChange}/>
-            </div>
-          </div>
+          <input id="email" type="email" name="email" className="form-control validate" placeholder="email" onChange={this.handleOnChange}/>
+          <br />
           {/* Password */}
-          <input id="password" name="password" type="password" className="validate" onChange={this.handleOnChange}/>
+          <input id="password" name="password" type="password" className="form-control validate" placeholder="password" onChange={this.handleOnChange}/>
           {/* Phone number */}
           <br />
-          <textarea id="address" name="address" rows="5" cols="20" className="validate" onChange={this.handleOnChange}/>
-          <br />
-          <input id="phoneNumber" name="phoneNumber" type="number" className="validate" onChange={this.handleOnChange}/>
+          <input id="phoneNumber" name="phoneNumber" type="number" className="form-control validate" placeholder="phonenumber" onChange={this.handleOnChange}/>
           <br />
 
-          <input id="website" name="website" type="text" className="validate" onChange={this.handleOnChange}/>
+          <input id="website" name="website" type="text" className="form-control validate" placeholder="Website" onChange={this.handleOnChange}/>
+          <br />
+          <br />
+          <textarea id="address" name="address" rows="5" cols="20" className="form-control validate" placeholder="address" onChange={this.handleOnChange}/>
           <br />
 
           {/* Sign up button */}

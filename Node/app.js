@@ -22,6 +22,7 @@ var config = JSON.parse(fs.readFileSync("./components/config.json"));
 var nodemailer = require('nodemailer');
 
 
+
 let transporter = nodemailer.createTransport({
   service: 'gmail',
   secure: false,
@@ -181,6 +182,7 @@ indexRouter.post('/sendmail', (req, res, next) => {
   
 
 });
+
 
 
 // var name = "foobar";

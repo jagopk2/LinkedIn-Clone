@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^3.9.3",
     "axios": "^0.18.0",
+    "cors": "^2.8.5",
     "local-storage": "^2.0.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
@@ -16,10 +18,12 @@
     "react-timeout": "^1.2.0",
     "react-toastify": "^5.1.0",
     "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrently \"react-scripts start\" \"node server.js\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

@@ -42,6 +42,12 @@ class AfterLogin extends Component{
                                 </NavLink>
 							</li>
                             <li>
+							    <NavLink to="/company/chat">
+									<span><img src="images/icon3.png" alt /></span>
+									chat
+                                </NavLink>
+							</li>
+                            <li>
 							    <NavLink to="/company/viewApprovedJobs">
 									<span><img src="images/icon4.png" alt /></span>
 									Jobs Approved

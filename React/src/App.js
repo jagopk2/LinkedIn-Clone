@@ -12,6 +12,7 @@ import JobsApproved from './Components/JobsApproved'
 import JobWithApprovedUser from './Components/jobWithApprovedUser'
 import CompanyFollowers from './Components/companyFollowers'
 import FollowerUserProfile from './Components/FollowerUserProfile'
+import Chat from './Components/chat'
 
 
 import Login from './Components/login';
@@ -66,6 +67,8 @@ class App extends Component {
             <Route path="/company/jobWithApprovedUser" component={JobWithApprovedUser} />
             <Route path="/company/followers" component={CompanyFollowers} />
             <Route path="/company/followerUserProfile" component= {FollowerUserProfile} />
+            <Route path="/company/chat" component= {Chat} />
+                        
 
 
             {/* <Route path="/clogin" component= {Clogin} /> */}
