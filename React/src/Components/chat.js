@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import {
-  getCurrentPot,
+  getCurrentChat,
   sendNameToServer,
   sendPitchInToServer,
   sendGetOneToServer,
@@ -21,7 +19,7 @@ class Chat extends Component {
     const { dispatch } = this.props;
     const name = getAName();
     console.log('name', name)
-    getCurrentPot(dispatch);
+    getCurrentChat(dispatch);
     dispatch({ type: 'ASSIGNED_USERNAME', name });
     sendNameToServer(name);
   }
@@ -37,7 +35,7 @@ class Chat extends Component {
   pitchIn = () => {
     const { dispatch, name } = this.props;
     dispatch({ type: 'PITCH_IN' });
-    sendPitchInToServer(name);
+ //   sendPitchInToServer(name);
   };
 
   handleChange=(e)=>{
@@ -51,8 +49,19 @@ class Chat extends Component {
     let name = 'aliakber';
     console.log(this.state.message);
     e.preventDefault();
-    dispatch({ type: 'SEND_MSSG', data:[`${this.state.message}`,`${name}`  ]});
-    chatMessage(this.state.message, name);
+ //   dispatch({ type: 'SEND_IN' });
+    if(this.state.message !== '')
+      dispatch({ type: 'SEND_IN', data:[`${this.state.message}`,`${name}`  ]});
+    this.state.message = ''; 
+ //   chatMessage(this.props.message, name);
+  }
+  
+  getSender = (text) =>{
+    return text.substring(0,text.indexOf(':'))
+  }
+
+  getMessage = (text) =>{
+    return text.substring(text.indexOf(':')+1)
   }
 
   render() {
@@ -68,22 +77,23 @@ class Chat extends Component {
     } = this.props;
     return (
 <div id="mario-chat">
+        <p>{pot}</p>
+        <button onClick={this.pitchIn}>click me</button>
         <h2>Mario Chat</h2>
         <div id="chat-window">
           <div id="output" >
-            {
-            mssg &&mssg.map(text=>{
+           {
+            mssg && mssg.map(text=>{
               return (
                 <div>
-                  
-                  {text}
+                  <p><strong>{ this.getSender(text) }</strong>{ this.getMessage(text) }</p>
                 </div>
-              )
+             );
             })
             }
           </div>
         </div>
-        <input id="message" onChange={this.handleChange} type="text" placeholder="Message"/>
+        <input id="message" onChange={this.handleChange} value={this.state.message} type="text" placeholder="Message"/>
         <button id="send" onClick={this.handleClick}>Send</button>
       </div> 
    );

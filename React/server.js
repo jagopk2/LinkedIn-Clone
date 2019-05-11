@@ -10,21 +10,24 @@ app.use(cors());
 let pot = 0;
 let names = [];
 let serverNames = [];
-let mssg = '';
+let mssg = [];
 io.on('connection', socket => {
   console.log('in socket');
   socket.on('UPDATE_POT', state => {
-    pot = state.pot;
+  //  pot = state.pot;
     socket.broadcast.emit('UPDATED_POT', state);
   });
 
-  socket.on('chat', state => {
-    mssg = state.mssg;
-    socket.broadcast.emit('chat', state);
+  socket.on('UPDATE_CHAT', state => {
+    console.log('chat',state)
+    mssg = [...mssg, state.mssg] ;
+    socket.broadcast.emit('UPDATED_CHAT', state);
   });
 
 
   socket.on('GET_CURRENT_POT', () => socket.emit('CURRENT_POT', pot));
+  socket.on('GET_CURRENT_CHAT', () => socket.emit('CURRENT_CHAT', mssg));
+
 
   socket.on('SEND_NAME_TO_SERVER', name => {
     serverNames = [...serverNames, { socketId: socket.id, name }];
@@ -47,12 +50,6 @@ io.on('connection', socket => {
     socket.broadcast.emit('SEND_NAMES_TO_CLIENTS', names);
     socket.emit('SEND_NAMES_TO_CLIENTS', names);
   });
-
-  socket.on('chat', function(data){
-        // console.log(data);
-        io.sockets.emit('chat', data);
-    });
-
     // Handle typing event
     socket.on('typing', function(data){
         socket.broadcast.emit('typing', data);

@@ -1,1 +1,2 @@
-export const getAName = () => 'aliaber'+Date.now().toString().length;
+
+export const getAName = () => localStorage.getItem('chatName');

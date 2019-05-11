@@ -8,17 +8,21 @@ const reducer = (
     names: [],
     mode: null,
     whoDidIt: null,
-    mssg:''
+    mssg:[]
   },
   action
 ) => {
   console.log('aliakber',state, socket);
   switch (action.type) {
-    case 'SEND_MSSG':
+    case 'SEND_IN':
     console.log('action', action);
-    let mssg = [...state.mssg, action.data[1] + ' :  '+ action.data[0]] 
-    state = { ...state, mssg };
-    socket && socket.emit('chat', state);
+    let name = localStorage.getItem('chatName');
+    let mssg = [...state.mssg, name + ' :  '+ action.data[0]] 
+  //  console.log(action, mssg);
+  //  alert('aliakber');
+    state = { mssg: mssg };
+    console.log('send_mssg', state);
+    socket && socket.emit('UPDATE_CHAT', state);
     break;
   
 
@@ -36,9 +40,17 @@ const reducer = (
       console.log(action.type)
       state = { ...state, pot: action.updatedPot.pot };
       break;
+    case 'DELIVER_UPDATED_CHAT_TO_REDUCER':
+      console.log('DELIVER_UPDATED_CHAT_TO_REDUCER',action)
+      state = { ...state, mssg:action.updatedChat.mssg };
+      break;
     case 'CURRENT_POT_TO_REDUCER':
       console.log(action.type)
       state = { ...state, pot: action.pot };
+      break;
+    case 'CURRENT_CHAT_TO_REDUCER':
+      console.log(action.type)
+      state = { ...state, mssg: action.mssg };
       break;
     case 'ASSIGNED_USERNAME':
       state = { ...state, name: action.name };
