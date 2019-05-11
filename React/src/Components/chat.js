@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import {
   getCurrentChat,
   sendNameToServer,
-  sendPitchInToServer,
   sendGetOneToServer,
-  chatMessage
 } from '../socket';
 import { getAName } from '../usernames';
 import SnackBarNotif from '../SnackbarNotif';
@@ -20,23 +19,7 @@ class Chat extends Component {
     const name = getAName();
     console.log('name', name)
     getCurrentChat(dispatch);
-    dispatch({ type: 'ASSIGNED_USERNAME', name });
-    sendNameToServer(name);
   }
-
-  closeSnackbar = () => this.props.dispatch({ type: 'ANOTHER_ONE_PITCHED_IN' });
-
-  getOne = () => {
-    const { dispatch, name } = this.props;
-    dispatch({ type: 'GET_ONE' });
-    sendGetOneToServer(name);
-  };
-
-  pitchIn = () => {
-    const { dispatch, name } = this.props;
-    dispatch({ type: 'PITCH_IN' });
- //   sendPitchInToServer(name);
-  };
 
   handleChange=(e)=>{
     
@@ -51,7 +34,7 @@ class Chat extends Component {
     e.preventDefault();
  //   dispatch({ type: 'SEND_IN' });
     if(this.state.message !== '')
-      dispatch({ type: 'SEND_IN', data:[`${this.state.message}`,`${name}`  ]});
+      dispatch({ type: 'SEND_IN', data:`${this.state.message}`});
     this.state.message = ''; 
  //   chatMessage(this.props.message, name);
   }
@@ -76,12 +59,10 @@ class Chat extends Component {
       mssg
     } = this.props;
     return (
-<div id="mario-chat">
-        <p>{pot}</p>
-        <button onClick={this.pitchIn}>click me</button>
-        <h2>Mario Chat</h2>
+<div id="pro-chat">
+        <h2>Chat !!!</h2>
         <div id="chat-window">
-          <div id="output" >
+          <div id="output">
            {
             mssg && mssg.map(text=>{
               return (

@@ -5352,16 +5352,17 @@ img.my-cv-info{
 }
 
 
-#mario-chat h2{
-	font-size: 18px;
+#pro-chat h2{
+	font-size: 28px;
+	font-weight: 1000;
 	padding: 10px 20px;
-	color: #575ed8;
+	color: black;
 }
 
-#mario-chat{
+#pro-chat{
 	max-width: 600px;
 	margin: 30px auto;
-	border: 1px solid #ddd;
+	border: 1px solid #e44d3a;
 	box-shadow: 1px 3px 5px rgba(0,0,0,0.05);
 	border-radius: 2px;
 }
@@ -5369,7 +5370,7 @@ img.my-cv-info{
 #chat-window{
 	height: 400px;
 	overflow: auto;
-	background: #f9f9f9;
+	background: #f9fdf9;
 }
 
 #output p{
@@ -5379,14 +5380,8 @@ img.my-cv-info{
 	color: #555;
 }
 
-#feedback p{
-	color: #aaa;
-	padding: 14px 0px;
-	margin: 0 20px;
-}
-
 #output strong{
-	color: #575ed8;
+	color: #DC143C;
 }
 
 label{
@@ -5395,7 +5390,7 @@ label{
 	padding: 10px 20px;
 }
 
-#mario-chat input{
+#pro-chat input{
 	padding: 10px 20px;
 	box-sizing: border-box;
 	background: #eee;
@@ -5408,8 +5403,8 @@ label{
 	font-size: 16px;
 }
 
-#mario-chat button{
-	background: #575ed8;
+#pro-chat button{
+	background: #e44d3a;
 	color: #fff;
 	font-size: 18px;
 	border: 0;
