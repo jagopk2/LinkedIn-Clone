@@ -67,7 +67,6 @@ class App extends Component {
             <Route path="/company/followers" component={CompanyFollowers} />
             <Route path="/company/followerUserProfile" component= {FollowerUserProfile} />
 
-
             {/* <Route path="/clogin" component= {Clogin} /> */}
             {/* <Route path="/jobPosting" component={JobPosting} />
             <Route path="/jobPostDetails/:id" component={JobPostDetails} />

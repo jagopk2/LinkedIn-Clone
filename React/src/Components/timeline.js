@@ -178,7 +178,7 @@ class Timeline extends Component {
 
 
     render() {
-       
+    //    window.location.reload();
         var final_template = this.jobTemplate();
         return (
             <main>

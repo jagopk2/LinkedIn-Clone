@@ -75,7 +75,7 @@ class JobPosting extends Component{
         <div className="container">
              <div class="main-ws-sec">
 
-        <div className="post-popup job_post active">
+        <div className="job_post active">
 			<div className="post-project">
 				<h3>Post a job</h3>
 				<div className="post-project-fields">

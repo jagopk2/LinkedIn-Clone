@@ -109,7 +109,7 @@ router.post('/timeline', (req, res, next) => {
   });
 });
 router.post('/companies', (req, res, next) => {
-
+ var user_id = req.body.user_id;
   connection.query(`select * from company where id not in (select company_id from following where user_id =${user_id})`, function (error, results, fields) {
     if (error) {
       console.log('cannot Find any Company\n' + error);

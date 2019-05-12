@@ -4,7 +4,6 @@ import axios from 'axios';
 import { Redirect } from 'react-router'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 toast.configure({
   autoClose: 5000,
   position: toast.POSITION.TOP_CENTER,
@@ -28,18 +27,49 @@ class UserRegister extends Component {
 
   imageChange = (event) => {
     console.log(event.target.files[0])
+    var ext =  event.target.files[0].name.split('.').pop()
+    console.log(ext)
+    if(ext !== 'png' && ext !== 'jpg' && ext !== 'gif' && ext !== 'jpeg') {
+    toast("File is not image kindly upload a valid image", {
+
+      onClose: () => {
+        this.setState({
+          image: null
+        })
+      }
+    });  
+  }else{
     this.setState({
       ...this.state,
       image: event.target.files[0]
     })
   }
-  cvChange = (event) => {
-    console.log(event.target.files[0])
-    this.setState({
-      ...this.state,
-      cv: event.target.files[0]
-    })
+  // console.log(event.target.files[0]);
+  // console.log(event.target.files[0].name.split('.').pop());
+  
+    
   }
+  cvChange = (event) => {
+    var ext =  event.target.files[0].name.split('.').pop()
+    console.log(ext)
+    if(ext !== 'png' && ext !== 'jpg' && ext !== 'gif' && ext !== 'jpeg') {
+    toast("File is not image kindly upload a valid image", {
+
+      onClose: () => {
+        this.setState({
+          CV: null
+        })
+      }
+    });  
+  }else{
+    this.setState({
+        ...this.state,
+        cv: event.target.files[0]
+      
+    })
+    
+  }
+}
 
 
   handleSubmit = (e) => {

@@ -48,6 +48,8 @@ class Login extends Component {
           });
           localStorage.setItem('user_id', response.data.user_id);
           localStorage.setItem('sessionID', response.data.sessionID);
+          localStorage.setItem('chatName', response.target.email);
+          
         } else {
           var errormsg = response.data.message[0];
           console.log(errormsg)

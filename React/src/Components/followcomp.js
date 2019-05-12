@@ -78,7 +78,9 @@ class FollowComp extends Component {
 
     componentWillMount() {
         let url = 'http://localhost:3002/users/companies'
-        axios.post(url)
+        axios.post(url,{
+            user_id 
+        })
             .then((response) => {
                 // console.log(response.data);
                 this.setState({ companies_data: response.data });

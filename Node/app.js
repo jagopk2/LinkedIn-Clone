@@ -21,7 +21,6 @@ var path = require('path')
 var config = JSON.parse(fs.readFileSync("./components/config.json"));
 var nodemailer = require('nodemailer');
 
-
 let transporter = nodemailer.createTransport({
   service: 'gmail',
   secure: false,
@@ -56,7 +55,15 @@ app.use(session({
   cookie: { maxAge: 1000 * 10 * 10 }
 }));
 var storage = multer.diskStorage({
-  destination: (req, file, cb) => {
+  fileFilter: function (req, file, callback) {
+      var ext = path.extname(file.originalname);
+      console.log(file.originalname);
+      console.log(path.extname(file.originalname))
+      if(ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
+          return callback(new Error('Only images are allowed'))
+      }
+      callback(null, true)
+  },destination: (req, file, cb) => {
     cb(null, 'public/images/uploads/')
   },
   filename: (req, file, cb) => {
