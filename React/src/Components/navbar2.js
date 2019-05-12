@@ -101,7 +101,12 @@ class Navbar extends Component {
                             Jobs
                         </a>
                         </li>
-
+                        <li>
+                          <a href="/user/chat" title>
+                            <span><img src="images/icon5.png" alt /></span>
+                            Chat
+                        </a>
+                        </li>
                       </ul>
                     </nav>{/*nav end*/}
                     <div className="menu-btn">

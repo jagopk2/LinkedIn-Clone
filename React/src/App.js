@@ -54,6 +54,8 @@ class App extends Component {
             <ProtectedRoute path="/user/uprofile/:id" component={UserProfile} />
             <ProtectedRoute path="/user/followusers" component={FollowUser} />
             <ProtectedRoute path="/user/accountsettings" component={AccountSetting} />
+            <ProtectedRoute path="/user/chat" component= {Chat} />
+
 
 
             <Route path="/company/" component = {Navbarcomp}/>
