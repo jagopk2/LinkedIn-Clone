@@ -24,7 +24,7 @@ export function fetchUserProfile(user_id) {
     console.log('user_id_infetch',user_id)
     return dispatch => {
       dispatch(viewProfileBegin());
-      return axios.post("http://localhost:3001/company/fetchUserProfile",{
+      return axios.post("http://localhost:3002/company/fetchUserProfile",{
           data: user_id
       })
         .then(res => res.data)

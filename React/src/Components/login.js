@@ -29,7 +29,7 @@ class Login extends Component {
     console.log(e.target.email.value)
     console.log(e.target.password.value)
     console.log('handling submit')
-
+    var email = e.target.email.value
     let url = 'http://localhost:3002/users/login'
     axios.post(url, {
       email: e.target.email.value,
@@ -48,7 +48,7 @@ class Login extends Component {
           });
           localStorage.setItem('user_id', response.data.user_id);
           localStorage.setItem('sessionID', response.data.sessionID);
-          localStorage.setItem('chatName', response.target.email);
+          localStorage.setItem('chatName', email);
           
         } else {
           var errormsg = response.data.message[0];

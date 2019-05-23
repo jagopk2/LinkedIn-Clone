@@ -91,7 +91,7 @@ router.post('/isauthenticated', (req, res, next) => {
 });
 router.post('/timeline', (req, res, next) => {
   var user_id = req.body.user_id;
-  connection.query(`select j.id as job_id,j.company_id ,j.name as job_name,j.field,j.status,c.name as company_name ,c.picture ,c.website,j.description from jobposting j,company c where c.id = j.company_id and j.status = 'pending' and j.id not in (select job_id from jobapplication where user_id=${user_id});`, function (error, results, fields) {
+  connection.query(`select j.id as job_id,j.company_id ,j.title as job_name,j.field,j.status,c.name as company_name ,c.picture ,c.website,j.description from jobposting j,company c where c.id = j.company_id and j.status = 'pending' and j.id not in (select job_id from jobapplication where user_id=${user_id});`, function (error, results, fields) {
     if (error) {
       console.log('cannot Load the timeline\n' + error);
 
@@ -214,7 +214,7 @@ router.post('/getskills', (req, res, next) => {
 
 router.post('/ctimeline', (req, res, next) => {
   var user_id = req.body.user_id;
-  connection.query(`select j.id as job_id,j.company_id ,j.name as job_name,j.field,j.status,j.description from jobposting j where company_id in (select distinct(id) from company c, following f where c.id = f.company_id and user_id = ${user_id} and f.status = 'approved'  ) and status = 'pending' and id not in (select job_id from jobapplication where user_id=${user_id}); `, function (error, results, fields) {
+  connection.query(`select j.id as job_id,j.company_id ,j.title as job_name,j.field,j.status,j.description from jobposting j where company_id in (select distinct(id) from company c, following f where c.id = f.company_id and user_id = ${user_id} and f.status = 'approved'  ) and status = 'pending' and id not in (select job_id from jobapplication where user_id=${user_id}); `, function (error, results, fields) {
     if (error) {
       console.log('Error fetching Followed Companies \n' + error);
 
@@ -312,7 +312,7 @@ router.post('/uappliedjobs', (req, res, next) => {
 
   var user_id = req.body.user_id;
   console.log(user_id);
-  connection.query(`select j.id as job_id,j.company_id ,j.name as job_name,j.field,j.status,c.name as company_name ,c.picture ,c.website,j.description from jobposting j,company c where c.id = j.company_id  and j.id in (select job_id from jobapplication where user_id=${user_id});`, function (error, results, fields) {
+  connection.query(`select j.id as job_id,j.company_id ,j.title as job_name,j.field,j.status,c.name as company_name ,c.picture ,c.website,j.description from jobposting j,company c where c.id = j.company_id  and j.id in (select job_id from jobapplication where user_id=${user_id});`, function (error, results, fields) {
     console.log(`select j.id as job_id,j.company_id ,j.name as job_name,j.field,j.status,c.name as company_name ,c.picture ,c.website,j.description from jobposting j,company c where c.id = j.company_id  and j.id in (select job_id from jobapplication where user_id=${user_id});`)
     if (error) {
       console.log('Error Getting user Applied Jobs Data\n' + error);

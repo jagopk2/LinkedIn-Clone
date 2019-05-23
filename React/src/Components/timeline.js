@@ -97,7 +97,6 @@ class Timeline extends Component {
                                             <img src={'http://localhost:3002/download/' + job.picture} alt="Image" height={50} width={50} />
                                             <div className="usy-name">
                                                 <h3>{job.company_name}</h3>
-                                                <span><img src="images/clock.png" alt />3 min ago</span>
                                             </div>
                                         </div>
                                     </div>

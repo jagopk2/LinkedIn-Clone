@@ -23,7 +23,7 @@ export function viewCompanyFollowers() {
     console.log('company_id_infetch',company_id)
     return dispatch => {
       dispatch(viewProfileBegin());
-      return axios.post("http://localhost:3001/company/viewCompanyFollowers",{
+      return axios.post("http://localhost:3002/company/viewCompanyFollowers",{
           data: company_id
       })
         .then(res => res.data)

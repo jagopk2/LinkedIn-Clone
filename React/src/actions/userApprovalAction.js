@@ -23,7 +23,7 @@ export function approveUser(userJob) {
     console.log('user_id_infetch',userJob)
     return dispatch => {
       dispatch(viewProfileBegin());
-      return axios.post("http://localhost:3001/company/approveUser",{
+      return axios.post("http://localhost:3002/company/approveUser",{
           data: userJob
       })
         .then(res => res.data)

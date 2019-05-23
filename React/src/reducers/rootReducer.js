@@ -11,6 +11,7 @@ import viewCompanyFollowersReducer from './viewCompanyFollowersReducer'
 import FollowerUserProfileReducer from './FollowerUserProfileReducer'
 import followBlockStatusReducer from './FollowBlockStatusReducer'
 import registerCompanyReducer from './registerCompanyReducer'
+import reducer from './reducer'
 
 const rootReducer = combineReducers({
     jobs:viewJobPostingReducer,
@@ -24,7 +25,8 @@ const rootReducer = combineReducers({
     viewCompnayFollowers : viewCompanyFollowersReducer,
     FollowerProfile :FollowerUserProfileReducer,
     FollowBlockStatus:followBlockStatusReducer,
-    registerCompany:registerCompanyReducer
+    registerCompany:registerCompanyReducer,
+    chatreducer:reducer
 })
 
 export default rootReducer;

@@ -107,17 +107,6 @@ class Navbar extends Component {
                             Chat
                         </a>
                         </li>
-                        <li>
-                          <a href="/user/login" title onClick={this.logout}>
-                            <span><img src="images/icon5.png" alt /></span>
-                            Logout
-                            </a>
-                        </li>
-                        <li><a href={"/user/uprofile/" + user_id} title><span><img src="images/icon5.png" alt /></span>
-                            Profile</a></li>
-                        <li><a href="/user/accountsettings" title><span><img src="images/icon5.png" alt /></span>
-                            Account Setting</a></li>
-
                       </ul>
                     </nav>{/*nav end*/}
                     <div className="menu-btn">

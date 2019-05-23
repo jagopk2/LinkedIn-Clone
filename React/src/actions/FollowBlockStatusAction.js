@@ -29,7 +29,7 @@ export function followBlockStatus(user_id, status) {
     console.log('company_id_infetch',company_id)
     return dispatch => {
       dispatch(viewProfileBegin());
-      return axios.post("http://localhost:3001/company/followBlockStatus",{
+      return axios.post("http://localhost:3002/company/followBlockStatus",{
           data: data
       })
         .then(res => res.data)

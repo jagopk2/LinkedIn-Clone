@@ -37,7 +37,7 @@ class CompanyFollowers extends Component{
 
         if(this.state.location)
         {
-            window.location.replace('/followers');
+            window.location.replace('/company/followers');
         }
 
 

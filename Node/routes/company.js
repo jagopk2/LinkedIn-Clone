@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var connection = require('../connection/sql');
 var passport = require('../config/passport');
+var socket = require('socket.io');
+
 /* GET users listing. */
 
 router.post('/viewProfile', function (req, res, next) {

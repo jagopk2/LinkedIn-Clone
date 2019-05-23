@@ -38,7 +38,7 @@ class JobsApproved extends Component{
 														<li><span>{job.address}</span></li>
 													</ul>
 													<p>{job.description}
-                                                        <a href="#" title=""><Link to={{ pathname: '/jobWithApprovedUser', state: { job_id: `${job.id}`} }}><br/>Show Details</Link></a>
+                                                        <a href="#" title=""><Link to={{ pathname: '/company/jobWithApprovedUser', state: { job_id: `${job.id}`} }}><br/>Show Details</Link></a>
                                                     </p>
                                                 </div>
 											</div>

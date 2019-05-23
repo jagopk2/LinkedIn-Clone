@@ -29,7 +29,7 @@ class UserProfileApproval extends Component {
 
         if(this.state.location)
         {
-            return <Redirect to = '/jobPosting' />;
+            return <Redirect to = '/company/jobPosting' />;
         }
 
         let { userDetails } = this.props.user;

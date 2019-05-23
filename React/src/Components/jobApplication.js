@@ -27,7 +27,7 @@ class JobApplication extends Component {
                                   <h6>{ singleuser.email }</h6>                                  
                               </div>
                               <div className="card-action">
-                                  <Link to={{ pathname: '/userProfileApproval', state: { user_id: `${singleuser.user_id}`, job_id: `${this.props.job_id}`} }}>Show Details</Link>
+                                  <Link to={{ pathname: '/company/userProfileApproval', state: { user_id: `${singleuser.user_id}`, job_id: `${this.props.job_id}`} }}>Show Details</Link>
                               </div>
                           </div>
                       </div>

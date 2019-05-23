@@ -27,56 +27,36 @@ class compRegister extends Component {
   render() {
     console.log('im  register')
     return (
-      <div className= "container">  
-        <div className="row">
-                  <div className="row">
-                      <div className="input-field col s12">
-                         <h3>{this.props.status ? this.props.status.code : ''}</h3>
-                      </div>
-                  </div>              
-                <form className="col s12" onSubmit={this.handleSubmit}>
-                  <div className="row">
-                      <div className="input-field col s12">
-                        <label for="name">First Name</label>
-                        <input id="name" name="name" type="text" className="validate" onChange={this.handleOnChange} required/>
-                      </div>
-                  </div>
-                  <div className="row">
-                      <div className="input-field col s12">
-                        <label for="email">Email</label>
-                        <input id="email" type="email" name="email" className="validate" onChange={this.handleOnChange}/>
-                      </div>
-                  </div>  
-                  <div className="row">
-                      <div className="input-field col s12">
-                        <label for="password">Password</label>
-                        <input id="password" name="password" type="password" className="validate" onChange={this.handleOnChange}/>
-                      </div>
-                  </div>
-                  <div className="row">
-                      <div className="input-field col s12">
-                        <label for="address">address</label>
-                        <textarea id="address" name="address" rows="5" cols="20" className="validate" onChange={this.handleOnChange}/>
-                      </div>
-                  </div>
-                  <div className="row">
-                      <div className="input-field col s12">
-                        <label for="phoneNumber">phoneNumber</label>
-                        <input id="phoneNumber" name="phoneNumber" type="number" className="validate" onChange={this.handleOnChange}/>
-                      </div>
-                  </div>
-                  <div className="row">
-                      <div className="input-field col s12">
-                        <label for="website">website</label>
-                        <input id="website" name="website" type="text" className="validate" onChange={this.handleOnChange}/>
-                      </div>
-                  </div>
-                  <button className="btn waves-effect waves-light" type="submit" name="action" >
-                    Submit
-                    <i className="material-icons right">send</i>
-                  </button>
-                </form>
-            </div>
+      <div className="container junaid">
+        <form className="text-center border border-light p-5" onSubmit={this.handleSubmit} >
+          <div className="input-field col s12">
+              <h3>{this.props.status ? this.props.status.code : ''}</h3>
+          </div>
+          <p className="h4 mb-4">Sign up</p>
+
+          <input id="name" name="name" type="text" className="form-control" placeholder="Company Name" onChange={this.handleOnChange} required/>
+          <br />
+              {/* email */}
+          <input id="email" type="email" name="email" className="form-control validate" placeholder="email" onChange={this.handleOnChange}/>
+          <br />
+          {/* Password */}
+          <input id="password" name="password" type="password" className="form-control validate" placeholder="password" onChange={this.handleOnChange}/>
+          {/* Phone number */}
+          <br />
+          <input id="phoneNumber" name="phoneNumber" type="number" className="form-control validate" placeholder="phonenumber" onChange={this.handleOnChange}/>
+          <br />
+
+          <input id="website" name="website" type="text" className="form-control validate" placeholder="Website" onChange={this.handleOnChange}/>
+          <br />
+          <br />
+          <textarea id="address" name="address" rows="5" cols="20" className="form-control validate" placeholder="address" onChange={this.handleOnChange}/>
+          <br />
+
+          {/* Sign up button */}
+          <button className="btn btn-danger my-4 btn-block" type="submit">Sign up</button>
+          {/* Social register */}
+          </form>
+        {/* Default form register */}
       </div>
     );
   }

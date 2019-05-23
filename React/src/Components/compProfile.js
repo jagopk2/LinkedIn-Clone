@@ -18,6 +18,7 @@ class ComProfile extends Component{
         Object.entries(profile).forEach(entry => {
             value = entry[1];
             localStorage.setItem('id', value['id']);
+            localStorage.setItem('chatName', value['name']);
         });
         return (
         <div className="container">

@@ -95,9 +95,9 @@ class JobPosting extends Component{
 								</div>
 							</div>
 							<div className="col-lg-12">
-                                <input type="checkbox"  name="skills" value="html" onChange={this.handleOnChange}></input>
-                                <input type="checkbox"  name="skills" value="css" onChange={this.handleOnChange} />
-                                <input type="checkbox"  name="skills" value="javascript" onChange={this.handleOnChange} />
+                                <input type="checkbox"  name="skills" value="html" onChange={this.handleOnChange} />HTML
+                                <input type="checkbox"  name="skills" value="css" onChange={this.handleOnChange} /> CSS
+                                <input type="checkbox"  name="skills" value="javascript" onChange={this.handleOnChange} /> JAVASCRIPT
 							</div>
 							<div className="col-lg-12">
                             <textarea name="description" onChange={this.handleOnChange} width="150" ></textarea>
